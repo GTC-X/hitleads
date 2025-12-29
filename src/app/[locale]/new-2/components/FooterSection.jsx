@@ -1,51 +1,52 @@
-"use client";
+import React from "react";
 
-export default function FooterSection() {
+export default function ZHHeaderStrip() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Column - Title and Text */}
-          <div className="space-y-6">
-            {/* Title with Shield Icon */}
-            <div className="flex items-center gap-3">
-              <svg
-                className="w-8 h-8 text-orange-500 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
-                影响汇率是有那些因素?
-              </h2>
+    <section className="w-full bg-white pb-16">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* wrapper with the same airy spacing */}
+        <div className="flex items-center justify-between py-6">
+          {/* Left: icon + title */}
+          <div className="flex items-start gap-4">
+            {/* Icon (approx) */}
+            <div>
+              <img className="w-20 h-20" src="/new/tick-icon.png" alt="" />
             </div>
 
-            {/* Text */}
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              汇率,即两种货币之间的兑换比率,对于全球货币流动至关重要。汇率,即两种货币之间的兑换比率,对于全球货币流动至关重要。
+            {/* Title + small subtitle line */}
+            <div>
+              <h3 className="text-[28px] font-medium leading-[1.2] text-[#BF966B]">
+                影响汇率是有
+                <br />
+                哪些因素？
+              </h3>
+            </div>
+          </div>
+
+          {/* Right: two pills + small text under (like screenshot) */}
+          <div className="flex flex-col items-end">
+            <div className="flex items-center gap-5">
+              <span className="inline-flex h-[24px] items-center rounded-full bg-[#6D5A45] px-5 text-[9.5px] font-medium text-white/95 shadow-[0_6px_14px_rgba(0,0,0,0.12)]">
+                汇率变化与交易、汇率波动的关键
+              </span>
+              <span className="inline-flex h-[24px] items-center rounded-full bg-[#6D5A45] px-5 text-[9.5px] font-medium text-white/95 shadow-[0_6px_14px_rgba(0,0,0,0.12)]">
+                全球经济数据、政策与风险情绪的影响
+              </span>
+            </div>
+          </div>
+
+        </div>
+        
+        <div className="flex justify-between">
+            <p className="mt-2 max-w-[520px] text-right text-[9.5px] leading-[1.6] text-[#B9B9B9]">
+              全面了解不同因素对汇率的影响，帮助您更好地把握全球市场与投资机会
+            </p>
+            <p className="mt-2 max-w-[360px] text-[9.5px] leading-[1.6] text-[#B9B9B9]">
+              全面了解不同因素对汇率的影响，帮助您更好地把握全球市场与投资机会
             </p>
           </div>
-
-          {/* Right Column - Buttons */}
-          <div className="flex flex-col gap-4">
-            {/* Button 1 */}
-            <button className="w-full lg:w-auto px-6 md:px-8 py-3 md:py-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg transition-colors duration-200 text-left lg:text-center">
-              让财富成为必需
-            </button>
-
-            {/* Button 2 */}
-            <button className="w-full lg:w-auto px-6 md:px-8 py-3 md:py-4 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg transition-colors duration-200 text-left lg:text-center">
-              制定合适的投资策略,让财富在您最需要的地方
-            </button>
-          </div>
-        </div>
       </div>
-    </section>
+
+      {/* subtle bottom divider */}    </section>
   );
 }
-

@@ -8,12 +8,14 @@ import QuoteFormSection from "./components/QuoteFormSection";
 import AdvantagesSection from "./components/AdvantagesSection";
 import CallToActionSection from "./components/CallToActionSection";
 import FooterSection from "./components/FooterSection";
+import AppsRadialMap from "./components/Section2";
 
 export default function New3Page() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSection />
+      <AppsRadialMap/>
       <GSuiteIntroSection />
       <GoogleServicesSection />
       <PricingTableSection />

@@ -6,9 +6,9 @@ export default function ThreeCardsSection() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-[#926B42] to-[#BD976A] py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8 relative">
+    <section className="bg-gradient-to-b from-[#926B42] to-[#BD976A] py-12 md:py-20 px-4 md:px-6 lg:px-8 relative">
       {/* Chevron Separator */}
-      <div className="absolute top-0 left-1/2 transform rounded-full h-16 w-16  bg-white -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute top-0 flex justify-center items-center left-1/2 transform rounded-full h-12 w-12  bg-white -translate-x-1/2 -translate-y-1/2">
         <svg
           className="w-8 h-8 text-gray-900"
           fill="none"
@@ -24,10 +24,11 @@ export default function ThreeCardsSection() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-8">
+      <div className="container mx-auto pt-8">
         {/* Headline */}
         <h2 className="text-3xl md:text-4xl font-normal leading-[42px] text-white mb-12 md:mb-16 text-center">
-          不仅改变您的外貌,更改变您感受的疗法 <br/> 不仅改变您的外貌,更改变您感受
+          不仅改变您的外貌,更改变您感受的疗法 <br />{" "}
+          不仅改变您的外貌,更改变您感受
         </h2>
 
         {/* Three Cards Grid */}
@@ -35,25 +36,24 @@ export default function ThreeCardsSection() {
           {[1, 2, 3].map((index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
             >
-              {/* Image - Hands cupping golden sphere */}
-              <div className="relative h-64 md:h-72 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                {/* Golden Sphere Placeholder */}
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 rounded-full shadow-2xl flex items-center justify-center">
-                    <div className="w-24 h-24 bg-gradient-to-br from-yellow-200 to-yellow-300 rounded-full"></div>
-                  </div>
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 w-32 h-32 bg-yellow-400 rounded-full opacity-30 blur-xl"></div>
+              {/* Image with text overlay */}
+              <div className="relative h-64 md:h-64 overflow-hidden">
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url('/new/page2-bg.svg')`,
+                  }}
+                ></div>
+                
+                {/* Text overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6  to-transparent">
+                  <p className="text-gray-900 text-base leading-relaxed">
+                    {cardContent.text}
+                  </p>
                 </div>
-              </div>
-
-              {/* Text */}
-              <div className="p-6">
-                <p className="text-base text-gray-700 leading-relaxed">
-                  {cardContent.text}
-                </p>
               </div>
             </div>
           ))}
@@ -62,4 +62,3 @@ export default function ThreeCardsSection() {
     </section>
   );
 }
-

@@ -17,15 +17,18 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className=" py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Title and Subtitle */}
-        <div className="mb-8 md:mb-12">
+        <div className="mb-8 md:mb-12 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3">
             关于......的
           </h2>
-          <p className="text-lg md:text-xl text-gray-700">
-            重塑您的美丽重塑您的 不仅改变您的外貌,更改变您感受的疗法
+          <p className="text-lg md:text-2xl text-[#BF966B]">
+            重塑您的美丽重塑您的
+          </p>
+          <p className="text-lg md:text-lg text-gray-700">
+            不仅改变您的外貌,更改变您感受的疗法
           </p>
         </div>
 
@@ -34,11 +37,11 @@ export default function AboutSection() {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+              className=" transition-shadow duration-200"
             >
               {/* Card Image */}
-              <div className=" relative overflow-hidden">
-                <img src={card?.image} alt="" />
+              <div className=" relative w-full overflow-hidden">
+                <img className="h-[400px] w-full" src={card?.image} alt="" />
               </div>
             </div>
           ))}
