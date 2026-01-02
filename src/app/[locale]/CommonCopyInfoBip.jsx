@@ -619,7 +619,7 @@ const CommonMainFormCopy = ({
             type="text"
             placeholder={t("firstName")}
             {...formik.getFieldProps("nickname")}
-            className={`w-full border px-3 py-2 text-primary ${
+            className={`w-full border px-3 py-2 text-primary bg-white ${
               isMobile ? "bg-[#33335b]" : ""
             } rounded-md ${
               formik.touched.nickname && formik.errors.nickname
@@ -637,7 +637,7 @@ const CommonMainFormCopy = ({
             type="text"
             placeholder={t("lastName")}
             {...formik.getFieldProps("last_name")}
-            className={`w-full border px-3 py-2 rounded-md text-primary ${
+            className={`w-full border px-3 py-2 rounded-md text-primary bg-white ${
               isMobile ? "bg-[#33335b]" : ""
             } ${
               formik.touched.last_name && formik.errors.last_name
@@ -659,7 +659,7 @@ const CommonMainFormCopy = ({
             type="email"
             placeholder={t("email")}
             {...formik.getFieldProps("email")}
-            className={`w-full border px-3 py-2 rounded-md text-primary ${
+            className={`w-full border px-3 py-2 rounded-md text-primary bg-white ${
               isMobile ? "bg-[#33335b]" : ""
             } ${
               formik.touched.email && formik.errors.email
@@ -691,7 +691,7 @@ const CommonMainFormCopy = ({
             }
             value={formik.values.phone}
             onChange={(phone) => formik.setFieldValue("phone", phone)}
-            className={`flex-1 border px-3 text-primary py-2 ${
+            className={`flex-1 border px-3 text-primary bg-white py-2 ${
               isMobile ? "bg-[#33335b]" : ""
             } rounded-md ${
               formik.touched.phone && formik.errors.phone
@@ -704,7 +704,7 @@ const CommonMainFormCopy = ({
               type="button"
               onClick={sendPhoneVerificationCode}
               disabled={phoneOtpLoading || !isPhoneValid}
-              className="min-h-[41px] bg-[#666684] text-white px-4 py-2 rounded-md text-xs sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+              className="min-h-[41px] bg-[#666684] text-white  px-4 py-2 rounded-md text-xs sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {phoneOtpLoading ? t("sending") : t("getCode")}
             </button>
