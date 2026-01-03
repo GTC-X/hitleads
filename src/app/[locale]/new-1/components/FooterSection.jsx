@@ -1,18 +1,13 @@
-"use client";
-
-export default function FooterSection() {
+export default function ForexTrainingBanner() {
   return (
-    <footer className="bg-white py-6 md:py-8 px-4 md:px-6 lg:px-6 border-t border-gray-200">
-      <div className="container mx-auto">
-        {/* Wind Turbine Icons */}
-        <div className="flex items-center justify-evenly gap-5 md:gap-5 lg:gap-5">
-          {[...Array(5)].map((_, index) => (
-            <div key={index} className="flex-shrink-0">
-              <img src="/new/3.svg" alt="" />
-            </div>
-          ))}
-        </div>
+    <section className="w-full md:bg-[#BF966B] bg-[#3A72F5] py-8">
+      <div className="mx-auto flex container items-center justify-center">
+        <p className="text-center md:text-[42px] text-[24px] font-medium leading-[1.3] text-white underline underline-offset-4">
+          Join our Forex trading training and start
+          <br />
+          your profitable journey
+        </p>
       </div>
-    </footer>
+    </section>
   );
 }

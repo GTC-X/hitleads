@@ -3,46 +3,46 @@
 export default function TrustedSection() {
   const testimonials = [
     {
-      name: "詹姆斯·安德森",
-      subName: "鱼过斯·安德森",
-      quote: "汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢……",
+      name: "James Anderson",
+      subName: "Success Story",
+      quote: "After taking this course, my Forex trading skills greatly improved, and I am now making consistent profits.",
     },
     {
-      name: "詹姆斯·安德森",
-      subName: "鱼过斯·安德森",
-      quote: "汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢……",
+      name: "Arthur",
+      subName: "Success Story",
+      quote: "The practical teaching system of this foreign exchange trading course effectively made up for my shortcomings in trading strategies and capital management, helping me achieve a crucial breakthrough from losses to continuous profits.",
     },
     {
-      name: "詹姆斯·安德森",
-      subName: "鱼过斯·安德森",
-      quote: "汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢汇率，即两种货币之间的兑换比率，对于全球货币流动至关重要。但你对这方面的情况究竟了解多少呢……",
+      name: "Ethan",
+      subName: "Success Story",
+      quote: "This forex trading course not only taught me the skills, but also provided me with a complete trading logic. With this logic, I am now able to achieve stable profits.",
      },
   ];
 
   return (
-    <section className="relative py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/new/section-3-bg.svg')`,
+          backgroundImage: `url('/new/new-bg-section3.svg')`,
         }}
       ></div>
       
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-gray-900/60"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-16 h-3 bg-[#FF8A14]"></div>
-            <p className="text-sm md:text-base text-[#FF8A14]">
-              先进制造技术提升塞巴利工厂的竞争力
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-8 h-1.5 bg-[#FF8A14] rounded-full"></div>
+            <p className="text-base md:text-[20px] text-[#FF8A14]">
+            Our experts in this field
             </p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white">
-            我们在全球50个国家都备受信赖
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-[400] text-white">
+          The Success Story of a Forex Trader
           </h2>
         </div>
 
@@ -67,7 +67,7 @@ export default function TrustedSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-[#C7C7C7] text-sm md:text-base leading-[26px] min-h-[200px] mb-8 line-clamp-6">
+              <p className="text-[#C7C7C7] font-[300] text-sm md:text-base leading-[26px] min-h-[200px] mb-8 line-clamp-6">
                 {testimonial.quote}
               </p>
 
@@ -83,6 +83,15 @@ export default function TrustedSection() {
               </div>
             </div>
           ))}
+        </div>
+        <div className=" mt-12 flex justify-center">
+          <button
+            type="button"
+            className="mt-2 px-4 py-4   w-full rounded-full md:bg-[#BF966B] bg-[#3A72F5] max-w-xl text-[20px] font-[400] leading-[1.15] text-white hover:brightness-95"
+          >
+            Join our Forex trading training and start your
+            profitable journey
+          </button>
         </div>
       </div>
     </section>

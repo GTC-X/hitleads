@@ -13,7 +13,11 @@ export default async function LocaleLayout({ children, params }) {
   const isArabicOrKurdish = locale === "ar" || locale === "ku";
 
   return (
-    <html lang={locale} dir={isArabicOrKurdish ? "rtl" : "ltr"}>
+    <html 
+      lang={locale} 
+      dir={isArabicOrKurdish ? "rtl" : "ltr"}
+      style={{ fontFamily: '"PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", sans-serif' }}
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -44,10 +48,20 @@ export default async function LocaleLayout({ children, params }) {
           }}
         />
         <style>{`
-          body {
-            font-family: '${
+          html {
+            font-family: "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", '${
               isArabicOrKurdish ? "Noto Kufi Arabic" : "Poppins"
-            }', sans-serif;
+            }', sans-serif !important;
+          }
+          body {
+            font-family: "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", '${
+              isArabicOrKurdish ? "Noto Kufi Arabic" : "Poppins"
+            }', sans-serif !important;
+          }
+          *, *::before, *::after {
+            font-family: "PingFang SC", "PingFang TC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", '${
+              isArabicOrKurdish ? "Noto Kufi Arabic" : "Poppins"
+            }', sans-serif !important;
           }
         `}</style>
       </head>
