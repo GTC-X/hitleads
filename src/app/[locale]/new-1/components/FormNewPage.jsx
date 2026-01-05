@@ -410,7 +410,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
     }
   };
 
-  const color = isMobile ? "text-[#fff]" : "text-[#666684]";
+  const color = isMobile ? "text-[#fff]" : "text-[#fff]";
 
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -457,7 +457,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             type="text"
             placeholder={t("firstName")}
             {...formik.getFieldProps("nickname")}
-            className={`w-full border px-3 py-2 md:text-primary text-white ${
+            className={`w-full border px-3 py-2 bg-white  text-primary ${
               isMobile ? "bg-[#33335b]" : ""
             } rounded-md ${
               formik.touched.nickname && formik.errors.nickname
@@ -475,7 +475,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             type="text"
             placeholder={t("lastName")}
             {...formik.getFieldProps("last_name")}
-            className={`w-full border px-3 py-2 rounded-md md:text-primary text-white ${
+            className={`w-full border px-3 py-2 rounded-md bg-white  text-primary  ${
               isMobile ? "bg-[#33335b]" : ""
             } ${
               formik.touched.last_name && formik.errors.last_name
@@ -497,7 +497,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             type="email"
             placeholder={t("email")}
             {...formik.getFieldProps("email")}
-            className={`w-full border px-3 py-2 rounded-md md:text-primary text-white ${
+            className={`w-full border px-3 py-2 rounded-md  bg-white  text-primary  ${
               isMobile ? "bg-[#33335b]" : ""
             } ${
               formik.touched.email && formik.errors.email
@@ -529,7 +529,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             }
             value={formik.values.phone}
             onChange={(phone) => formik.setFieldValue("phone", phone)}
-            className={`flex-1 border px-3 md:text-primary text-white py-2 ${
+            className={`flex-1 border px-3  bg-white  text-primary  py-2 ${
               isMobile ? "bg-[#33335b]" : ""
             } rounded-md ${
               formik.touched.phone && formik.errors.phone
@@ -553,7 +553,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
 
       {showOtp && (
         <div>
-          <p className="text-sm mb-2 md:text-primary text-white">
+          <p className="text-sm mb-2  text-white">
             OTP has been sent to given Number
           </p>
           <div className=" flex gap-3 items-center">
@@ -613,7 +613,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             type="text"
             placeholder={"Account Number"}
             {...formik.getFieldProps("account_no")}
-            className={`w-full border px-3 py-2 rounded-md md:text-primary text-white ${
+            className={`w-full border px-3 py-2 rounded-md  text-white ${
               isMobile ? "bg-[#33335b]" : ""
             } ${
               formik.touched.account_no && formik.errors.account_no
@@ -654,7 +654,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
           {...formik.getFieldProps("terms")}
           className="h-5 w-5"
         />
-        <label htmlFor="terms" className="text-xs md:text-primary text-white ">
+        <label htmlFor="terms" className="text-xs  text-white ">
           By submitting your detailed information, you are agreeing to be
           contacted so that we can respond to your inquiries.
         </label>
