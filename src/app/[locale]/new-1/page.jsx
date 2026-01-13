@@ -15,7 +15,7 @@ export default function New1Page() {
       {/* <TrustedSection /> */}
       <SmarterWaySection/>
       <SkillSection/>
-      <RecentInsightsSection />
+      <RecentInsightsSection /> 
       <FooterSection />
     </div>
   );
