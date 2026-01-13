@@ -62,56 +62,27 @@ export default function SmarterWaySection() {
       <div className="mx-auto container md:py-14 py-10">
         <div className="grid items-center gap-10 md:grid-cols-2">
           {/* LEFT */}
-          <div className="relative flex items-center justify-center">
-            {/* Laptop image container - for positioning reference */}
-            <div className="relative z-10 md:w-[360px] w-[280px] drop-shadow-[0_10px_18px_rgba(0,0,0,0.25)] md:ml-2">
-              {/* Animated circle waves - positioned behind laptop, centered */}
-              <div className="absolute left-1/2 top-1/2 z-0 ">
-                {/* Wave 1 */}
-                <div
-                  className="wave-circle absolute left-1/2 top-1/2 md:h-[350px] h-[280px] md:w-[350px] w-[280px] rounded-full bg-[#B8C0DB]/55"
-                  style={{
-                    animation: "wave 3s ease-out infinite",
-                  }}
-                />
-                {/* Wave 2 */}
-                <div
-                  className="wave-circle absolute left-1/2 top-1/2 md:h-[350px] h-[280px] md:w-[350px] w-[280px] rounded-full bg-[#B8C0DB]/40"
-                  style={{
-                    animation: "wave 3s ease-out infinite 1s",
-                  }}
-                />
-                {/* Wave 3 */}
-                <div
-                  className="wave-circle absolute left-1/2 top-1/2 md:h-[350px] h-[280px] md:w-[350px] w-[280px] rounded-full bg-[#B8C0DB]/30"
-                  style={{
-                    animation: "wave 3s ease-out infinite 2s",
-                  }}
-                />
-              </div>
-              {/* Laptop image - on top */}
-              <Image
-                src="/partner-with-us/laptop.svg"
+           <div className="relative w-full md:h-[450px]">
+                  <Image
+                src="/ht/mney1.jpg"
                 alt="Platform"
-                width={520}
-                height={420}
-                className="relative z-10 h-auto md:w-full w-[260px] mx-auto"
+        fill
+                className=" object-contain"
                 priority
               />
-            </div>
-          </div>
+              </div>
 
           {/* RIGHT */}
           <div className="max-w-xl">
-            <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-primary">
-                A Smarter Way to Improve
+            <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.1] font-[700] text-primary">
+                A Smarter Way to Improve <br></br>
               <span className="text-[#B48755]">
                 {" "}
                Your Income Situation
               </span>
         
             </h2>
-            <p className="text-base md:text-lg mt-4">
+            <p className="text-sm md:text-base mt-4">
               If rising expenses or limited income are putting pressure on you,
               this is a structured way to explore earning opportunities without
               rushing or taking unnecessary risks.
@@ -169,7 +140,7 @@ export default function SmarterWaySection() {
                           {/* Text (same start X always) */}
                           <div
                             className={[
-                              "font-[600] text-sm md:text-[19px] leading-[1.25]",
+                              "font-[600] text-sm md:text-[16px] leading-[1.25]",
                               isActive ? "text-white" : "text-[#000]",
                             ].join(" ")}
                           >
@@ -203,7 +174,7 @@ export default function SmarterWaySection() {
               }}
               className="mt-12 w-full md:w-auto px-8 py-3 text-base md:text-lg bg-[#B48755] hover:bg-[#9a7148] text-white font-semibold rounded-full transition-colors duration-200"
             >
-              Start with Guidance
+              Get in Touch with Expert
             </button>
           </div>
         </div>

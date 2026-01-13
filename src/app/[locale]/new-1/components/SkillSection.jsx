@@ -22,7 +22,7 @@ export default function SkillSection() {
   ];
 
   return (
-    <section className="relative w-full bg-gradient-to-r from-[#293B93] to-[#0D122D] md:py-20 py-10">
+    <section className="relative w-full bg-gradient-to-r from-[#293B93] to-[#0D122D] md:py-12 py-10">
       {/* Map background (replace this image with your real map asset) */}
 
       <div className="relative mx-auto container">
@@ -39,7 +39,7 @@ export default function SkillSection() {
           </div>
         </div>
         <div className="max-w-2xl mx-auto flex flex-col gap-5 text-center">
-        <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+        <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
           <span className="text-[#B48755]">
             {" "}
             Structured Access to Skills, Analysis, and Real Execution

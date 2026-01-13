@@ -28,7 +28,7 @@ export default function ExpertsCardsSection() {
         {/* Section Heading */}
         <div className="max-w-xl mx-auto flex flex-col gap-5 text-center">
           <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
-            Guidance That Helps You Grow, Step by Step
+            Guidance That Helps <br></br>You Grow, Step by Step
           </h2>
 
           <p className="text-base md:text-lg">

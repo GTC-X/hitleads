@@ -410,7 +410,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
     }
   };
 
-  const color = isMobile ? "text-[#fff]" : "text-[#fff]";
+  const color = isMobile ? "text-[#000]" : "text-[#000]";
 
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -654,7 +654,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
           {...formik.getFieldProps("terms")}
           className="h-5 w-5"
         />
-        <label htmlFor="terms" className="text-xs  text-white ">
+        <label htmlFor="terms" className="text-xs  text-black ">
           By submitting your detailed information, you are agreeing to be
           contacted so that we can respond to your inquiries.
         </label>
