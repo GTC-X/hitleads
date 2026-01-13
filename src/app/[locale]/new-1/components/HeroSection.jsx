@@ -6,7 +6,7 @@ export default function HeroWithRightForm() {
     <section id="hero-section" className="relative w-full overflow-hidden bg-[url('/new/banner.webp')] bg-cover bg-center h-[800px]">
 
       {/* Dark overlay (like screenshot) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/50 to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/50 to-[#141b43b0]/50" />
 
       <div className="relative z-10 mx-auto container md:py-24 py-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">

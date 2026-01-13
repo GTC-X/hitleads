@@ -103,12 +103,13 @@ export default function SmarterWaySection() {
 
           {/* RIGHT */}
           <div className="max-w-xl">
-            <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+            <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-primary">
+                A Smarter Way to Improve
               <span className="text-[#B48755]">
                 {" "}
-                A Smarter Way to Improve Your Income Situation
+               Your Income Situation
               </span>
-              .
+        
             </h2>
             <p className="text-base md:text-lg mt-4">
               If rising expenses or limited income are putting pressure on you,

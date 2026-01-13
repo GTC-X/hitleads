@@ -7,14 +7,14 @@ export default function RecentInsightsSection() {
         "Built for Consistent Execution",
       time: "2026.01.01",
       category: "Market trend",
-      img: "/new/new-img1.svg",
+      img: "/ht/image31.webp",
       description:"This opportunity rewards discipline and routine. The more consistent you are, the more value you gain from the learning and execution process."
      },
     {
       title:
         "Accessible From Anywhere",
       category: "Market trend",
-      img: "/new/new-img2.svg",
+      img: "/ht/image32.webp",
       time: "2026.01.01",
       description:"No physical location required. As long as you have internet access and time to focus, you can participate fully from any city or region."
     },
@@ -22,7 +22,7 @@ export default function RecentInsightsSection() {
       title:
         "Clear Structure, Repeatable Process",
       category: "Market trend",
-      img: "/new/new-img3.svg",
+      img: "/ht/image33.webp",
       time: "2026.01.01",
       description:"Follow a defined framework that allows you to apply the same process daily without relying on guesswork or external dependency."
      },
