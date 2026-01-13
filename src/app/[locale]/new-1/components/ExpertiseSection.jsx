@@ -74,7 +74,7 @@ export default function ExpertsCardsSection() {
                     <h4 className="font-[600] text-[13px] leading-[1.3]">
                       {card.title}
                     </h4>
-                    <p className="mt-1 text-[12px] leading-[1.35]">
+                    <p className="mt-1 text-[11px] md:text-[12px] leading-[1.35]">
                       {card.desc}
                     </p>
                   </div>
@@ -88,7 +88,7 @@ export default function ExpertsCardsSection() {
             {cards.map((c, idx) => (
               <div
                 key={idx}
-                className="relative h-[450px] overflow-hidden rounded-[12px] bg-[#e9eef5] shadow-[0_10px_22px_rgba(0,0,0,0.12)]"
+                className="relative h-[450px] overflow-hidden rounded-[12px] bg-[#e9eef5] shadow-[0_10px_22px_rgba(0,0,0,0.12)] p-3"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -103,7 +103,7 @@ export default function ExpertsCardsSection() {
                   }`}
                 />
 
-                <div className="absolute inset-x-0 bottom-0 px-6 pb-6 text-white text-center">
+                <div className="absolute inset-x-0 bottom-0 px-6 py-6 text-white text-center p-5">
                   <h4 className="font-[600] text-lg md:text-[19px] leading-[1.25]">
                     {c.title}
                   </h4>

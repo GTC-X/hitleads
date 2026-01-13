@@ -169,7 +169,7 @@ export default function SmarterWaySection() {
                           {/* Text (same start X always) */}
                           <div
                             className={[
-                              "font-[600] text-lg md:text-[19px] leading-[1.25]",
+                              "font-[600] text-sm md:text-[19px] leading-[1.25]",
                               isActive ? "text-white" : "text-[#000]",
                             ].join(" ")}
                           >
@@ -178,7 +178,7 @@ export default function SmarterWaySection() {
 
                           <div
                             className={[
-                              "mt-2 text-[15px] leading-[1.4]",
+                              "mt-2 text-xs md:text-[15px] leading-[1.4]",
                               isActive ? "text-white" : "text-[#000]",
                             ].join(" ")}
                           >

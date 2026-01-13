@@ -53,7 +53,7 @@ export default function SkillSection() {
         </div>
 
         {/* Cards grid */}
-        <div className="mt-20 grid md:gap-x-10 md:gap-y-24 gap-y-10 gap-x-5 md:grid-cols-3 grid-cols-2">
+        <div className="mt-20 grid md:gap-x-10 md:gap-y-24 gap-y-10 gap-x-5 md:grid-cols-3 grid-cols-1">
           {cards.map((c) => (
             <div
               className="relative mx-auto w-full max-w-[360px] rounded-[20px] bg-[#F6F6F6]"

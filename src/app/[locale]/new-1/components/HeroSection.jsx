@@ -3,7 +3,7 @@ import NewPageForm from "./FormNewPage";
 
 export default function HeroWithRightForm() {
   return (
-    <section id="hero-section" className="relative w-full overflow-hidden bg-[url('/new/banner.webp')] bg-cover bg-center h-[800px]">
+    <section id="hero-section" className="relative w-full overflow-hidden bg-[url('/new/banner.webp')] bg-cover bg-center md:h-[800px]">
 
       {/* Dark overlay (like screenshot) */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/50 to-[#141b43b0]/50" />
