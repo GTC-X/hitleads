@@ -1,13 +1,13 @@
-export default function ForexTrainingBanner() {
+export default function FooterSection() {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <section className="w-full md:bg-[#BF966B] bg-[#3A72F5] py-8">
-      <div className="mx-auto flex container items-center justify-center">
-        <p className="text-center md:text-[42px] text-[24px] font-medium leading-[1.3] text-white underline underline-offset-4">
-          Join our Forex trading training and start
-          <br />
-          your profitable journey
+    <footer className="w-full bg-gray-100 py-6 md:py-8">
+      <div className="mx-auto container flex items-center justify-center">
+        <p className="text-center text-sm md:text-base text-gray-600">
+          © {currentYear} All rights reserved.
         </p>
       </div>
-    </section>
+    </footer>
   );
 }

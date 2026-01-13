@@ -3,17 +3,17 @@ import NewPageForm from "./FormNewPage";
 
 export default function HeroWithRightForm() {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section id="hero-section" className="relative w-full overflow-hidden">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/new/banner-bg-new.svg')",
+          backgroundImage: "url('/new/banner.webp')",
         }}
       />
 
       {/* Dark overlay (like screenshot) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />
 
       <div className="relative z-10 mx-auto container md:py-24 py-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">

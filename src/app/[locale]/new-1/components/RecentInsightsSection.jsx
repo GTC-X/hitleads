@@ -4,31 +4,28 @@ export default function RecentInsightsSection() {
   const articles = [
     {
       title:
-        "The eurozone economy is slowing down, putting pressure on the euro.",
+        "Built for Consistent Execution",
       time: "2026.01.01",
       category: "Market trend",
       img: "/new/new-img1.svg",
-      description:
-        "Recently, the economic data of the Eurozone has slowed down, especially the decline in industrial output and consumer confidence index.",
-    },
+      description:"This opportunity rewards discipline and routine. The more consistent you are, the more value you gain from the learning and execution process."
+     },
     {
       title:
-        "The US dollar index (DXY) continued to strengthen, breaking above the 105 mark.",
+        "Accessible From Anywhere",
       category: "Market trend",
       img: "/new/new-img2.svg",
       time: "2026.01.01",
-      description:
-        "With the strong performance of the US economy, the US Dollar Index (DXY) has continued to strengthen and has surpassed the 105 mark. ",
+      description:"No physical location required. As long as you have internet access and time to focus, you can participate fully from any city or region."
     },
     {
       title:
-        "The yen continues to weaken, and the Bank of Japan maintains its loose monetary policy.",
+        "Clear Structure, Repeatable Process",
       category: "Market trend",
       img: "/new/new-img3.svg",
       time: "2026.01.01",
-      description:
-        "The Japanese yen has been weakening continuously over the past few months, especially against the backdrop of the accelerated US interest rate hike cycle. ",
-    },
+      description:"Follow a defined framework that allows you to apply the same process daily without relying on guesswork or external dependency."
+     },
   ];
 
   return (
@@ -36,31 +33,17 @@ export default function RecentInsightsSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          {/* Mobile Header */}
-          <div className="md:hidden flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-1.5 bg-[#FF8A14] rounded-full"></div>
-            <p className="text-sm text-[#FF8A14]">
-              Our experts in this field
+          <div className="max-w-3xl mx-auto flex flex-col gap-5 text-center">
+            <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+              A Practical Opportunity for Focused & Consistent Individuals
+            </h2>
+
+            <p className="text-base md:text-lg">
+              If you have time, focus, and the willingness to follow a
+              structured process, this program is designed to help you use those
+              strengths effectively regardless of where you’re based.
             </p>
           </div>
-          <h2 className="md:hidden text-2xl font-bold text-gray-900 leading-tight mb-0">
-            Latest trends and trading
-            <br />
-            strategies in the foreign
-            <br />
-            exchange market
-          </h2>
-          
-          {/* Desktop Header */}
-          <div className="hidden md:flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-1.5 bg-[#FF8A14] rounded-full"></div>
-            <p className="text-sm md:text-base text-[#FF8A14]">
-              Our experts in this field
-            </p>
-          </div>
-          <h2 className="hidden md:block text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900">
-            Foreign exchange market trends
-          </h2>
         </div>
 
         {/* Article Cards - Mobile: Vertical Stack with Horizontal Layout, Desktop: Grid */}
@@ -83,10 +66,14 @@ export default function RecentInsightsSection() {
               {/* Mobile: Text Right, Desktop: Full Width */}
               <div className="flex-1 p-4 md:p-6">
                 {/* Date and Category */}
-                <div className="flex flex-col gap-2 mb-3 md:mb-2">
+                {/* <div className="flex flex-col gap-2 mb-3 md:mb-2">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-3 md:w-4 md:h-3 flex items-center justify-center flex-shrink-0">
-                      <img src="/new/time.svg" alt="" className="w-full h-full" />
+                      <img
+                        src="/new/time.svg"
+                        alt=""
+                        className="w-full h-full"
+                      />
                     </div>
                     <span className="text-xs md:text-sm text-[#6A6A6A] font-normal">
                       {article.time}
@@ -94,17 +81,24 @@ export default function RecentInsightsSection() {
                   </div>
                   <div className="flex items-center gap-2 md:mb-4">
                     <div className="w-4 h-3 md:w-4 md:h-3 flex items-center justify-center flex-shrink-0">
-                      <img src="/new/msg-icon.svg" alt="" className="w-full h-full" />
+                      <img
+                        src="/new/msg-icon.svg"
+                        alt=""
+                        className="w-full h-full"
+                      />
                     </div>
                     <span className="text-xs md:text-sm text-[#6A6A6A] font-normal">
                       {article.category}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Article Title - Mobile shows same text, Desktop shows article.title */}
                 <h3 className="text-sm md:text-lg font-[400] text-[#000] leading-tight mb-0 md:mb-3">
-                  <span className="md:hidden">The eurozone economy is slowing down, putting pressure on the euro.</span>
+                  <span className="md:hidden">
+                    The eurozone economy is slowing down, putting pressure on
+                    the euro.
+                  </span>
                   <span className="hidden md:inline">{article.title}</span>
                 </h3>
 
