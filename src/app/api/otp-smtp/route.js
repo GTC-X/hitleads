@@ -30,7 +30,7 @@ export async function POST(req) {
     subject:
       locale == "ar"
         ? "رمز التحقق (OTP) للحصول على 5,000 USC للتداول"
-        : "Get 5,000 USC to Trade OTP",
+        : "Not a Shortcut. Not a Get-Rich-Quick Scheme",
     text:
       locale == "ar" ? `رمز التحقق الخاص بك هو ${otp}` : `Your OTP is ${otp}`,
     html:
