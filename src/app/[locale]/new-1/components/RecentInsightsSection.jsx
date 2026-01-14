@@ -4,27 +4,27 @@ export default function RecentInsightsSection() {
   const articles = [
     {
       title:
-        "Guidance, Not Guessing",
+        "Built for Steady Progress",
       time: "2026.01.01",
       category: "Market trend",
       img: "/ht/image31.webp",
-      description:"Learn with experienced support and clear structure."
+      description:"Designed for individuals who prefer gradual learning instead of rushed or high-pressure decisions."
      },
     {
       title:
-        "Clarity, Not Complexity",
+        "Flexible & Location-Free",
       category: "Market trend",
       img: "/ht/image32.webp",
       time: "2026.01.01",
-      description:"Understand real scenarios in simple terms."
+      description:"Participate from anywhere, without needing a physical setup or relocation."
     },
     {
       title:
-        "Practice, Not Pressure",
+        "Structured & Repeatable",
       category: "Market trend",
       img: "/ht/image33.webp",
       time: "2026.01.01",
-      description:"Apply only when you feel confident and prepared."
+      description:"A clear framework that helps you follow the same process without relying on guesswork or external dependency."
      },
   ];
 
@@ -35,11 +35,11 @@ export default function RecentInsightsSection() {
         <div className="text-center mb-12 md:mb-16">
           <div className="max-w-3xl mx-auto flex flex-col gap-5 text-center">
             <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[24px] leading-[1.51] font-[700] text-[#b68756]">
-              What You Actually Get
+              Is This Right for You?
             </h2>
 
             <p className="text-base md:text-lg">
-             This is not a get-rich-quick program. It is designed for steady learning and gradual progress.
+             A practical option for focused and consistent individuals
             </p>
           </div>
         </div>

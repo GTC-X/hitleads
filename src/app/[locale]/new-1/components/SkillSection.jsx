@@ -5,18 +5,18 @@ import Image from "next/image";
 export default function SkillSection() {
   const cards = [
     {
-      title: "Expert-Led Training",
-      desc: "Access structured sessions led by experienced professionals, focused on execution logic, risk awareness, and disciplined decision-making.",
+      title: "Guidance, Not Guessing",
+      desc: "Learn with experienced support and clear structure.",
       icon: "/partner-with-us/why-icon1.svg",
     },
     {
-      title: "Analysis Workshops",
-      desc: "Break down real scenarios to understand how opportunities are identified, evaluated, and filtered using practical frameworks.",
+      title: "Clarity, Not Complexity",
+      desc: "Understand real scenarios in simple terms.",
       icon: "/partner-with-us/why-icon2.svg",
     },
     {
-      title: "Live Sessions & Application",
-      desc: "See how strategies are applied in real time, with clear reasoning behind each action and outcome.",
+      title: "Practice, Not Pressure",
+      desc: "Apply only when you feel confident and prepared.",
       icon: "/partner-with-us/why-icon3.svg",
     },
   ];
@@ -42,13 +42,12 @@ export default function SkillSection() {
         <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[22px] leading-[1.1] font-[700] text-[#b68756]">
           <span className="text-[#B48755]">
             {" "}
-            Structured Access to Skills, Analysis, and Real Execution
+           What You Actually Get
           </span>
           .
         </h2>
         <p className="text-base md:text-lg text-white">
-          Built for proactive individuals who look for structured programs, real
-          execution, and practical learning not surface-level information.
+    This is not a get-rich-quick program. It is designed for steady learning and gradual progress.
         </p>
         </div>
 
@@ -102,6 +101,30 @@ export default function SkillSection() {
             </div>
           ))}
         </div>
+          {/* ✅ WhatsApp Button */}
+                            <div className="mt-10 flex md:justify-center justify-center">
+                              <a
+                                href="https://wa.me/18255698500" // 🔁 replace with your WhatsApp number
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="
+                                  inline-flex items-center gap-3
+                                  bg-[#25D366]
+                                  hover:bg-[#1EBE5D]
+                                  text-white
+                                  font-semibold
+                                  px-6 py-3
+                                  rounded-full
+                                  transition-all duration-300
+                                  shadow-lg
+                                "
+                              >
+                                <FaWhatsapp className="text-2xl" />
+                                <span className="text-sm md:text-base">
+                                  Chat with us on WhatsApp
+                                </span>
+                              </a>
+                            </div>
       </div>
     </section>
   );
