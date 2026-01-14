@@ -65,6 +65,7 @@
         "emailInvalid": "Invalid email address",
         "emailRequired": "Email is required",
         "phoneRequired": "Phone number is required",
+        "invalidEmail": "Invalid email address. Please use a valid email.",
         "countryRequired": "Country is required",
         "otpLength": "OTP must be 6 digits",
         "otpRequired": "OTP is required",

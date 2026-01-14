@@ -142,6 +142,33 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
     ),
   }));
 
+  // send OTP
+  const sendVerificationCode = () => {
+    if (!formik.values.email) {
+      toast.error(t("errors.emailRequired"));
+      return;
+    }
+    setOtpLoading(true);
+    axios
+      .post(`/api/otp-smtp`, {
+        email: formik.values.email,
+        first_name: formik.values.nickname,
+        type: "0",
+        locale,
+      })
+      .then((res) => {
+        if (res?.data?.message) {
+          setShowOtp(true);
+          formik.setFieldValue("otp", "");
+          setIsDisable(true);
+          toast.success(t("otpSent"));
+        } else {
+          toast.error(res?.data?.message);
+        }
+      })
+      .finally(() => setOtpLoading(false));
+  };
+
   const getIso2ByCountryName = (name) => {
     const hit = countryList.find((c) => c.en_short_name === name);
     return hit?.alpha_2_code;
@@ -331,45 +358,6 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formik.values.phone, otpPhoneNumber]);
 
-  const sendPhoneVerificationCode = () => {
-    if (!formik.values.phone) {
-      toast.error(t("errors.phoneRequired"));
-      return;
-    }
-    if (!isValidPhoneNumber(formik.values.phone)) {
-      toast.error(t("errors.phoneInvalid"));
-      return;
-    }
-    setPhoneOtpLoading(true);
-    axios
-      .post(`/api/send-phone-otp`, {
-        phone: formik.values.phone,
-        first_name: formik.values.nickname,
-        locale,
-        channel: "whatsapp",
-      })
-      .then((res) => {
-        if (res?.data?.success || res?.data?.message) {
-          setShowOtp(true);
-          formik.setFieldValue("otp", "");
-          setIsDisable(true);
-          setIsOtpVerified(false); // Reset verification status when new OTP is sent
-          // Store the phone number that OTP was sent to (for tracking changes)
-          setOtpPhoneNumber(formik.values.phone);
-          toast.success(t("otpSent"));
-        } else {
-          toast.error(res?.data?.message || t("otpFail"));
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error(
-          error?.response?.data?.message || error?.message || t("otpFail")
-        );
-      })
-      .finally(() => setPhoneOtpLoading(false));
-  };
-
   // Check if phone number is valid and complete
   const isPhoneValid =
     formik.values.phone && isValidPhoneNumber(formik.values.phone);
@@ -383,7 +371,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
     setVerifyingOtp(true);
     try {
       const res = await axios.post("/api/verify-otp", {
-        phone: formik.values.phone,
+        email: formik.values.email,
         otp: otp,
       });
 
@@ -505,56 +493,25 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
                 : "border-gray-300"
             }`}
           />
-          {/* <button
-                        type="button"
-                        onClick={sendVerificationCode}
-                        className={`absolute min-h-[41px] top-0 ${locale == "ar" ? "left-0" : "right-0"} bg-[#666684] text-white px-3 py-1 rounded-md text-xs`}
-                    >
-                        {otpLoading ? t("sending") : t("getCode")}
-                    </button> */}
+          <button
+            type="button"
+            onClick={sendVerificationCode}
+            className={`absolute min-h-[41px] top-0 ${
+              locale == "ar" ? "left-0" : "right-0"
+            } bg-[#666684] text-white px-3 py-1 rounded-md text-xs`}
+          >
+            {otpLoading ? t("sending") : t("getCode")}
+          </button>
         </div>
         {formik.touched.email && formik.errors.email && (
           <p className="text-xs text-red-500">{formik.errors.email}</p>
         )}
       </div>
 
-      {/* Phone */}
-      <div>
-        <label className={`text-sm ${color} mb-1`}>Enter WhatsApp Number</label>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <PhoneInput
-            international
-            defaultCountry={
-              countryData?.country_code || countryData?.country || "AE"
-            }
-            value={formik.values.phone}
-            onChange={(phone) => formik.setFieldValue("phone", phone)}
-            className={`flex-1 border px-3  bg-white  text-primary  py-2 ${
-              isMobile ? "bg-[#33335b]" : ""
-            } rounded-md ${
-              formik.touched.phone && formik.errors.phone
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
-          />
-          <button
-            type="button"
-            onClick={sendPhoneVerificationCode}
-            disabled={phoneOtpLoading || !isPhoneValid}
-            className="min-h-[41px] bg-[#B68756] whitespace-nowrap text-white px-4 py-2 rounded-md text-xs sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            {phoneOtpLoading ? t("sending") : t("getCode")}
-          </button>
-        </div>
-        {formik.touched.phone && formik.errors.phone && (
-          <p className="text-xs text-red-500">{formik.errors.phone}</p>
-        )}
-      </div>
-
       {showOtp && (
         <div>
-          <p className="text-sm mb-2  text-white">
-            OTP has been sent to given Number
+          <p className="text-sm mb-2  text-[#000]">
+            OTP has been sent to given Email
           </p>
           <div className=" flex gap-3 items-center">
             <OtpInput
@@ -606,6 +563,31 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
           </div>
         </div>
       )}
+      {/* Phone */}
+      <div>
+        <label className={`text-sm ${color} mb-1`}>Enter WhatsApp Number</label>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <PhoneInput
+            international
+            defaultCountry={
+              countryData?.country_code || countryData?.country || "AE"
+            }
+            value={formik.values.phone}
+            onChange={(phone) => formik.setFieldValue("phone", phone)}
+            className={`flex-1 border px-3  bg-white  text-primary  py-2 ${
+              isMobile ? "bg-[#33335b]" : ""
+            } rounded-md ${
+              formik.touched.phone && formik.errors.phone
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
+          />
+        </div>
+        {formik.touched.phone && formik.errors.phone && (
+          <p className="text-xs text-red-500">{formik.errors.phone}</p>
+        )}
+      </div>
+
       {isPreAccount && (
         <div>
           <label className={`text-sm ${color} mb-1`}>Account Number</label>
