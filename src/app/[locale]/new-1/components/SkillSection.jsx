@@ -39,7 +39,7 @@ export default function SkillSection() {
           </div>
         </div>
         <div className="max-w-2xl mx-auto flex flex-col gap-5 text-center">
-        <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+        <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[22px] leading-[1.1] font-[700] text-[#b68756]">
           <span className="text-[#B48755]">
             {" "}
             Structured Access to Skills, Analysis, and Real Execution

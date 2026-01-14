@@ -29,12 +29,12 @@ export default function RecentInsightsSection() {
   ];
 
   return (
-    <section className="py-10 md:py-14 bg-[#F8F8F8] md:bg-[#F8F8F8] px-4 md:px-6 lg:px-8">
+    <section className="py-10  bg-[#F8F8F8] md:bg-[#F8F8F8] px-4 md:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <div className="max-w-3xl mx-auto flex flex-col gap-5 text-center">
-            <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.51] font-[700] text-[#b68756]">
+            <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[24px] leading-[1.51] font-[700] text-[#b68756]">
               A Practical Opportunity for Focused & Consistent Individuals
             </h2>
 
@@ -113,7 +113,7 @@ export default function RecentInsightsSection() {
             {/* ✅ WhatsApp Button */}
                     <div className="mt-10 flex md:justify-center justify-center">
                       <a
-                        href="https://wa.me/971000000000" // 🔁 replace with your WhatsApp number
+                        href="https://wa.me/18255698500" // 🔁 replace with your WhatsApp number
                         target="_blank"
                         rel="noopener noreferrer"
                         className="

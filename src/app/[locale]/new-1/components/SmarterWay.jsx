@@ -60,7 +60,7 @@ export default function SmarterWaySection() {
   return (
     <section className="w-full bg-[#F8F8F8]">
       <div className="mx-auto container md:py-14 py-10">
-        <div className="grid items-center gap-10 md:grid-cols-2">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
           {/* LEFT */}
            <div className="relative w-full md:h-[450px]">
                   <Image
@@ -74,8 +74,8 @@ export default function SmarterWaySection() {
 
           {/* RIGHT */}
           <div className="max-w-xl">
-            <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.1] font-[700] text-primary">
-                When Expenses Keep Rising <br></br>
+            <h2 className="mt-4  md:text-[30px] lg:text-[35px] text-[22px] leading-[1.1] font-[700] text-primary">
+                When Expenses Keep Rising, 
               <span className="text-[#B48755]">
                 {" "}
                Doing Nothing Is Also a Risk

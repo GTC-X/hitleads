@@ -26,8 +26,8 @@ export default function ExpertsCardsSection() {
     <section className="w-full bg-white">
       <div className="container mx-auto py-12">
         {/* Section Heading */}
-        <div className="max-w-xl mx-auto flex flex-col gap-5 text-center">
-          <h2 className="mt-4 md:text-[45px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+        <div className="max-w-lg mx-auto flex flex-col gap-5 text-center">
+          <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[22px] leading-[1.1] font-[700] text-[#b68756]">
             Not a Shortcut. Not a Get-Rich-Quick Scheme.
           </h2>
 

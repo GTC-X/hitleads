@@ -6,7 +6,7 @@ export default function HeroWithRightForm() {
   return (
     <section
       id="hero-section"
-      className="relative w-full overflow-hidden bg-[url('/new/banner.webp')] bg-cover bg-center md:h-[800px]"
+      className="relative w-full overflow-hidden bg-[url('/new/banner.webp')] bg-cover bg-center lg:h-[800px]"
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/50 to-[#141b43b0]/50" />
@@ -14,8 +14,8 @@ export default function HeroWithRightForm() {
       <div className="relative z-10 mx-auto container md:py-24 py-12">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
           {/* Left content */}
-          <div className="text-white md:text-left text-center">
-            <h1 className="md:text-[42px] xl:text-7xl text-[22px] leading-[32px] font-[900] md:leading-[1.2]">
+          <div className="text-white lg:text-left text-center">
+            <h1 className="md:text-4xl lg:text-[42px] xl:text-7xl text-[28px] leading-[32px] font-[900] md:leading-[1.2]">
          Have Time but Not Enough Income?
             </h1>
 
@@ -24,9 +24,9 @@ export default function HeroWithRightForm() {
             </p>
 
             {/* ✅ WhatsApp Button */}
-            <div className="mt-10 flex md:justify-start justify-center">
+            <div className="mt-10 flex lg:justify-start justify-center">
               <a
-                href="https://wa.me/971000000000" // 🔁 replace with your WhatsApp number
+                href="https://wa.me/18255698500" // 🔁 replace with your WhatsApp number
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
