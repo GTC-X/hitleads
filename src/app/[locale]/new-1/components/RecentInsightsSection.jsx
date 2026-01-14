@@ -4,27 +4,27 @@ export default function RecentInsightsSection() {
   const articles = [
     {
       title:
-        "Built for Consistent Execution",
+        "Guidance, Not Guessing",
       time: "2026.01.01",
       category: "Market trend",
       img: "/ht/image31.webp",
-      description:"This opportunity rewards discipline and routine. The more consistent you are, the more value you gain from the learning and execution process."
+      description:"Learn with experienced support and clear structure."
      },
     {
       title:
-        "Accessible From Anywhere",
+        "Clarity, Not Complexity",
       category: "Market trend",
       img: "/ht/image32.webp",
       time: "2026.01.01",
-      description:"No physical location required. As long as you have internet access and time to focus, you can participate fully from any city or region."
+      description:"Understand real scenarios in simple terms."
     },
     {
       title:
-        "Clear Structure, Repeatable Process",
+        "Practice, Not Pressure",
       category: "Market trend",
       img: "/ht/image33.webp",
       time: "2026.01.01",
-      description:"Follow a defined framework that allows you to apply the same process daily without relying on guesswork or external dependency."
+      description:"Apply only when you feel confident and prepared."
      },
   ];
 
@@ -35,13 +35,11 @@ export default function RecentInsightsSection() {
         <div className="text-center mb-12 md:mb-16">
           <div className="max-w-3xl mx-auto flex flex-col gap-5 text-center">
             <h2 className="mt-4 md:text-[30px] lg:text-[35px] text-[24px] leading-[1.51] font-[700] text-[#b68756]">
-              A Practical Opportunity for Focused & Consistent Individuals
+              What You Actually Get
             </h2>
 
             <p className="text-base md:text-lg">
-              If you have time, focus, and the willingness to follow a
-              structured process, this program is designed to help you use those
-              strengths effectively regardless of where you’re based.
+             This is not a get-rich-quick program. It is designed for steady learning and gradual progress.
             </p>
           </div>
         </div>
