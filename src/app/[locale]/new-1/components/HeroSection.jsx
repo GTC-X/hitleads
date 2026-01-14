@@ -53,7 +53,7 @@ export default function HeroWithRightForm() {
           <div className="md:rounded-[10px] rounded-3xl px-8 py-8 shadow-[0_22px_55px_rgba(0,0,0,0.35)] bg-gradient-to-r from-[#fff] via-[#f2f2f2] to-[#f7f7f7]">
             <NewPageForm
               zapierUrl="https://hooks.zapier.com/hooks/catch/16420445/uzc4qag/"
-              successPath="/success"
+              successPath="/new-1"
               isPreAccount={false}
             />
           </div>
