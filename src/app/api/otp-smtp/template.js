@@ -15,11 +15,7 @@ const generateEnglishTemplate = (otp, first_name) => {
         <td align="center">
 
           <table width="650" cellpadding="0" cellspacing="0" style="border:1px solid #e0e0e0; border-radius:8px;padding:30px; padding-top: 20px">
-            <tr>
-              <td align="center" style="padding-bottom: 20px;">
-                <img src="/logo-image.wepg" alt="GTC Logo" style="width: 300px;" />
-              </td>
-            </tr>
+      
             <tr>
               <td align="center" style="font-size:20px;font-weight:600;color:#253289;padding-bottom:10px;">
                 Not a Shortcut. <br> Not a Get-Rich-Quick Scheme.
@@ -71,7 +67,7 @@ const generateEnglishTemplate = (otp, first_name) => {
                   shadow-lg
                 "
               >
-                <FaWhatsapp className="text-2xl" />
+      
                 <span className="text-sm md:text-base">
                   Chat with us on WhatsApp
                 </span>
@@ -174,7 +170,6 @@ const generateArabicTemplate = (otp, first_name) => {
                   shadow-lg
                 "
               >
-                <FaWhatsapp className="text-2xl" />
                 <span className="text-sm md:text-base">
                   Chat with us on WhatsApp
                 </span>
