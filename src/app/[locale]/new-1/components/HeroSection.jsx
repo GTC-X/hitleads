@@ -15,14 +15,12 @@ export default function HeroWithRightForm() {
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
           {/* Left content */}
           <div className="text-white md:text-left text-center">
-            <h1 className="md:text-[42px] xl:text-6xl text-[22px] leading-[32px] font-[900] md:leading-[1.2]">
-              Build a Part Time Income Even If You Are Completely New
+            <h1 className="md:text-[42px] xl:text-7xl text-[22px] leading-[32px] font-[900] md:leading-[1.2]">
+         Have Time but Not Enough Income?
             </h1>
 
-            <p className="mt-6 md:text-[28px] text-[16px] md:leading-[40px] leading-[30px] text-white/85 max-w-4xl md:pr-10">
-              Learn how everyday people use the foreign exchange market to create
-              extra income with step-by-step guidance, flexible time, and a
-              beginner-friendly approach.
+            <p className="mt-6 md:text-[30px] text-[16px] md:leading-[40px] leading-[30px] text-white/85 max-w-4xl md:pr-10 capitalize">
+             A structured way to learn and build <br></br>extra income step by step.
             </p>
 
             {/* ✅ WhatsApp Button */}

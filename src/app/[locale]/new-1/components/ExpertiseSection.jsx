@@ -3,20 +3,20 @@ import React from "react";
 export default function ExpertsCardsSection() {
   const cards = [
     {
-      title: "Learn First, Without Pressure",
-      desc: "Get clear guidance from experienced professionals who help you understand the basics before taking your first real step.",
+      title: "No rush, no pressure, no spending",
+      desc: "No rush. No forced decisions. Understand first before taking any real step.",
       img: "/ht/image1.webp",
       darkOverlay: true,
     },
     {
-      title: "Understand the Market Before You Act",
-      desc: "Learn how market movements work through simple explanations and real examples without confusing systems or jargon.",
+      title: "Not doing things blindly",
+      desc: "No confusing systems or empty promises. Move Forward at Your Own Pace",
       img: "/ht/image2.webp",
       darkOverlay: false,
     },
     {
-      title: "Progress Only When You Are Ready",
-      desc: "Start with practice, build confidence at your own pace, and move forward knowing support is always available.",
+      title: "You control the pace",
+      desc: "Practice first. Decide later. Support will always available for you",
       img: "/ht/image3.webp",
       darkOverlay: false,
     },
@@ -27,13 +27,12 @@ export default function ExpertsCardsSection() {
       <div className="container mx-auto py-12">
         {/* Section Heading */}
         <div className="max-w-xl mx-auto flex flex-col gap-5 text-center">
-          <h2 className="mt-4 md:text-[42px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
-            Guidance That Helps <br></br>You Grow, Step by Step
+          <h2 className="mt-4 md:text-[45px] text-[24px] leading-[1.1] font-[700] text-[#b68756]">
+            Not a Shortcut. Not a Get-Rich-Quick Scheme.
           </h2>
 
-          <p className="text-base md:text-lg">
-            We focus on practical learning, real market understanding, and steady
-            progress without shortcuts or complicated theory.
+          <p className="text-base md:text-xl">
+            We focus on learning first, clarity first, and progress only when you are ready.
           </p>
         </div>
 

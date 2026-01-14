@@ -6,16 +6,16 @@ import { useState, useEffect } from "react";
 export default function SmarterWaySection() {
   const items = [
     {
-      title: "Support When You Need It",
-      desc: "Get access to guidance and assistance so you’re never left confused or stuck while learning.",
+      title: "Guidance When You Need It",
+      desc: "You receive support and direction when it matters, so you never feel lost or unsure while learning.",
     },
     {
-      title: "Track Everything Clearly",
-      desc: "Follow your progress, activities, and results in real time, so you always know where you stand.",
+      title: "No Guessing, No Blind Decisions",
+      desc: "Everything is clear and trackable, helping you understand what you’re doing and why.",
     },
     {
-      title: "Designed for Gradual Progress",
-      desc: "You move forward step by step, starting with learning and practice, then real activity only when you’re ready.",
+      title: "Learn First, Decide Later",
+      desc: "Start with learning and practice. Real action only comes when you are comfortable.",
     },
   ];
 
@@ -75,17 +75,16 @@ export default function SmarterWaySection() {
           {/* RIGHT */}
           <div className="max-w-xl">
             <h2 className="mt-4 md:text-[35px] text-[24px] leading-[1.1] font-[700] text-primary">
-                A Smarter Way to Improve <br></br>
+                When Expenses Keep Rising <br></br>
               <span className="text-[#B48755]">
                 {" "}
-               Your Income Situation
+               Doing Nothing Is Also a Risk
               </span>
         
             </h2>
             <p className="text-sm md:text-base mt-4">
-              If rising expenses or limited income are putting pressure on you,
-              this is a structured way to explore earning opportunities without
-              rushing or taking unnecessary risks.
+             This is a structured way to explore opportunities
+without rushing, gambling, or blind decisions.
             </p>
 
             <div className="relative mt-7">
