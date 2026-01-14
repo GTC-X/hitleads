@@ -143,11 +143,23 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
   }));
 
   // send OTP
-  const sendVerificationCode = () => {
+  const sendVerificationCode = async () => {
     if (!formik.values.email) {
       toast.error(t("errors.emailRequired"));
       return;
     }
+       // Validate email first
+       const validationResponse = await axios.post(`/api/validate-email`, {
+        email: formik.values.email,
+      });
+
+      if (!validationResponse.data.valid) {
+        toast.error(
+          t("errors.invalidEmail") ||
+            "Invalid email address. Please use a valid email."
+        );
+        return;
+      }
     setOtpLoading(true);
     axios
       .post(`/api/otp-smtp`, {
