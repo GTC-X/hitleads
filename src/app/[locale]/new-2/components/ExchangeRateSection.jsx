@@ -1,79 +1,66 @@
-import React from "react";
+"use client";
 
-const FeatureWithImageZH = () => {
+export default function ForexRealtimeHero() {
   return (
-    <section className="w-full bg-white py-16 relative">
-      {/* subtle divider lines (top/bottom like screenshot) */}
-      <div className="border-t border-[#E6E6E6] absolute top-[15%] left-0 right-0" />
-      <div className="container mx-auto ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
-          {/* Left Content */}
-          <div className="max-w-xl">
-            <h3 className="text-[34px] font-medium text-[#BF966B] tracking-tight">
-              影响汇率是有哪些因素？
-            </h3>
+    <section className="relative w-full overflow-hidden bg-[#070311] py-10 md:py-14">
+      {/* Background glows */}
 
-            <p className="mt-3 text-[30px] leading-12 text-[#3C3C3C]">
-              发现美丽的力量，提升你的实践
-              <br />
-              发现美丽的力量，提升你的实践
+      {/* Subtle grain (pure CSS) */}
+
+      <div className="= mx-auto container">
+        {/* Background Image */}
+
+
+        {/* Inner panel like screenshot */}
+        <div className="mx-auto relative w-full rounded-[24px] bg-[rgba(10,6,22,0.55)] px-6 py-10 ">
+          {/* top-left soft highlight */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-30 rounded-[24px] bg-no-repeat"
+            style={{
+              backgroundImage: `url('/new/bg-last-2.svg')`,
+            }}
+          ></div>
+          {/* <div className="pointer-events-none absolute -left-24 -top-15 h-[260px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_65%)] blur-2xl" /> */}
+
+          <div className=" max-w-6xl mx-auto text-center md:py-10">
+            <h2 className="md:text-[42px] text-[28px] font-normal leading-[1.2] text-white">
+              Foreign exchange trading operates 24 hours a day in real time,
+              allowing you to seize the latest trends in
+               <span className="text-[#7C5EFF]"
+                style={{
+                  background: "linear-gradient(180deg, #C55CFF 0%, #381158 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              > the global market at any
+              time.</span> 
+            </h2>
+
+            <p className="mx-auto mt-8 max-w-[760px] text-[16px] leading-[1.2] text-white">
+              Free foreign exchange market analysis report, helping you predict
+              market trends
             </p>
 
-            <div className="mt-10 space-y-8">
-              {/* Item 1 */}
-              <div className=" gap-4">
-                <div className="mt-1 flex h-8 w-8 mb-2 items-center justify-center rounded-full bg-[#E8D7C2]">
-                  <img src="/new/tick-brown.svg" alt="" />
-                </div>
-
-                <div>
-                  <p className="text-[13px] font-semibold text-[#BF966B]">
-                    财富之路，我们为您铺就稳健基石
-                  </p>
-                  <p className="mt-1 text-[12px] leading-5 text-[#000000]">
-                    全面、为您多年经验上总结，帮您在进阶投资里更稳…
-                  </p>
-                </div>
-              </div>
-
-              {/* Item 2 */}
-              <div className=" gap-4">
-                <div className="mt-1 flex h-8 w-8 items-center mb-2 justify-center rounded-full bg-[#E8D7C2]">
-                  <img src="/new/tick-brown.svg" alt="" />
-                </div>
-
-                <div>
-                  <p className="text-[13px] font-semibold text-[#BF966B]">
-                    财富之路，我们为您铺就稳健基石
-                  </p>
-                  <p className="mt-1 text-[12px] leading-5 text-[#000000]">
-                    全面、为您多年经验上总结，帮您在进阶投资里更稳…
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image Card */}
-          <div className="flex justify-center lg:justify-end relative z-10">
-            <div className="relative">
-              {/* beige frame behind (offset) */}
-              {/* main image */}
-              <div className="relative bg-[#BF966B57] p-4 overflow-hidden rounded-[18px]  shadow-[0_22px_45px_rgba(0,0,0,0.18)]">
-                <img
-                  src="/new/lamp-img.svg" // <-- replace with your actual image path
-                  alt="Hourglass"
-                  className="h-[500px] w-full object-cover"
-                />
-              </div>
-            </div>
+            <button
+              type="button"
+              className="relative mt-12  max-w-2xl text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
+              style={{
+                borderRadius: "15px",
+                border: "1px solid #BE9EFF",
+                background:
+                  "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
+              }}
+            >
+              <span className="relative block">
+                By learning foreign exchange trading strategies, you will be
+                able to identify market trends and make efficient trading
+                decisions.
+              </span>
+            </button>
           </div>
         </div>
       </div>
-
-      <div className="border-b border-[#E6E6E6] absolute bottom-[15%] left-0 right-0" />
     </section>
   );
-};
-
-export default FeatureWithImageZH;
+}

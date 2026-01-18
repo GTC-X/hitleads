@@ -15,8 +15,6 @@ export default function New2Page() {
       <MedicalBeautySection />
       <AboutSection />
       <ExchangeRateSection />
-      <FormSection />
-      <FooterSection />
     </div>
   );
 }

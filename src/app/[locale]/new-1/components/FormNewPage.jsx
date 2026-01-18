@@ -93,7 +93,7 @@ const selectStyles = {
   }),
 };
 
-const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
+const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false, variant = "default" }) => {
   const { countryData } = useLocationDetail();
   const [otpLoading, setOtpLoading] = useState(false);
   const [phoneOtpLoading, setPhoneOtpLoading] = useState(false);
@@ -411,9 +411,10 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
   };
 
   const color = isMobile ? "text-[#000]" : "text-[#000]";
+  const isForexVariant = variant === "forex";
 
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-4">
+    <form onSubmit={formik.handleSubmit} className={isForexVariant ? "space-y-4" : "space-y-4"}>
       {/* First + Last Name */}
       <input
         name="fbclid"
@@ -452,17 +453,21 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
       />
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className={`text-sm ${color} mb-1`}>{t("firstName")}</label>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("firstName")}</label>
           <input
             type="text"
             placeholder={t("firstName")}
             {...formik.getFieldProps("nickname")}
-            className={`w-full border px-3 py-2 bg-white  text-primary ${
-              isMobile ? "bg-[#33335b]" : ""
-            } rounded-md ${
-              formik.touched.nickname && formik.errors.nickname
-                ? "border-red-500"
-                : "border-gray-300"
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } rounded-md ${
+                    formik.touched.nickname && formik.errors.nickname
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
             }`}
           />
           {formik.touched.nickname && formik.errors.nickname && (
@@ -470,17 +475,21 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
           )}
         </div>
         <div>
-          <label className={`text-sm ${color} mb-1`}>{t("lastName")}</label>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("lastName")}</label>
           <input
             type="text"
             placeholder={t("lastName")}
             {...formik.getFieldProps("last_name")}
-            className={`w-full border px-3 py-2 rounded-md bg-white  text-primary  ${
-              isMobile ? "bg-[#33335b]" : ""
-            } ${
-              formik.touched.last_name && formik.errors.last_name
-                ? "border-red-500"
-                : "border-gray-300"
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.last_name && formik.errors.last_name
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
             }`}
           />
           {formik.touched.last_name && formik.errors.last_name && (
@@ -491,18 +500,22 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
 
       {/* Email + OTP */}
       <div>
-        <label className={`text-sm ${color} mb-1`}>{t("email")}</label>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("email")}</label>
         <div className="relative">
           <input
             type="email"
             placeholder={t("email")}
             {...formik.getFieldProps("email")}
-            className={`w-full border px-3 py-2 rounded-md  bg-white  text-primary  ${
-              isMobile ? "bg-[#33335b]" : ""
-            } ${
-              formik.touched.email && formik.errors.email
-                ? "border-red-500"
-                : "border-gray-300"
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.email && formik.errors.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
             }`}
           />
           <button
@@ -510,7 +523,11 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             onClick={sendVerificationCode}
             className={`absolute min-h-[41px] top-0 ${
               locale == "ar" ? "left-0" : "right-0"
-            } bg-[#666684] text-white px-3 py-1 rounded-md text-xs`}
+            } ${
+              isForexVariant 
+                ? "bg-[#7C5EFF] hover:bg-[#6B4FE0] text-white px-3 py-1 rounded-md text-xs" 
+                : "bg-[#666684] text-white px-3 py-1 rounded-md text-xs"
+            }`}
           >
             {otpLoading ? t("sending") : t("getCode")}
           </button>
@@ -522,7 +539,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
 
       {showOtp && (
         <div>
-          <p className="text-sm mb-2  text-[#000]">
+          <p className={`text-sm mb-2 ${isForexVariant ? "text-white/70" : "text-[#000]"}`}>
             OTP has been sent to given Email
           </p>
           <div className=" flex gap-3 items-center">
@@ -577,7 +594,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
       )}
       {/* Phone */}
       <div>
-        <label className={`text-sm ${color} mb-1`}>Enter WhatsApp Number</label>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>Enter WhatsApp Number</label>
         <div className="flex flex-col sm:flex-row gap-2">
           <PhoneInput
             international
@@ -586,12 +603,16 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
             }
             value={formik.values.phone}
             onChange={(phone) => formik.setFieldValue("phone", phone)}
-            className={`flex-1 border px-3  bg-white  text-primary  py-2 ${
-              isMobile ? "bg-[#33335b]" : ""
-            } rounded-md ${
-              formik.touched.phone && formik.errors.phone
-                ? "border-red-500"
-                : "border-gray-300"
+            className={`flex-1 ${
+              isForexVariant 
+                ? "[&_input]:h-[42px] [&_input]:border-none [&_input]:rounded-md [&_input]:bg-white [&_input]:px-4 [&_input]:text-sm [&_input]:text-[#111] [&_input]:focus:ring-2 [&_input]:focus:ring-[#7C5EFF]/50" 
+                : `border px-3 bg-white text-primary py-2 ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } rounded-md ${
+                    formik.touched.phone && formik.errors.phone
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
             }`}
           />
         </div>
@@ -602,17 +623,21 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
 
       {isPreAccount && (
         <div>
-          <label className={`text-sm ${color} mb-1`}>Account Number</label>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>Account Number</label>
           <input
             type="text"
             placeholder={"Account Number"}
             {...formik.getFieldProps("account_no")}
-            className={`w-full border px-3 py-2 rounded-md  text-white ${
-              isMobile ? "bg-[#33335b]" : ""
-            } ${
-              formik.touched.account_no && formik.errors.account_no
-                ? "border-red-500"
-                : "border-gray-300"
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md text-white ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.account_no && formik.errors.account_no
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
             }`}
           />
           {formik.touched.account_no && formik.errors.account_no && (
@@ -623,11 +648,22 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
 
       {/* Country */}
       <div>
-        <label className={`text-sm ${color} mb-1`}>{t("country")}</label>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("country")}</label>
         <Select
           name="country"
           options={options}
-          styles={selectStyles}
+          styles={isForexVariant ? {
+            ...selectStyles,
+            control: (base, state) => ({
+              ...base,
+              backgroundColor: "#fff",
+              color: "#000",
+              borderColor: state.isFocused ? "rgba(124, 94, 255, 0.5)" : "transparent",
+              borderWidth: state.isFocused ? "2px" : "0px",
+              boxShadow: state.isFocused ? "0 0 0 2px rgba(124, 94, 255, 0.5)" : "none",
+              minHeight: 42,
+            }),
+          } : selectStyles}
           onChange={(opt, e) => {
             console.log({ opt, e });
             formik.setFieldValue("country", opt?.value);
@@ -648,7 +684,7 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
           {...formik.getFieldProps("terms")}
           className="h-5 w-5"
         />
-        <label htmlFor="terms" className="text-xs  text-black ">
+        <label htmlFor="terms" className={`text-xs ${isForexVariant ? "text-white/50" : "text-black"}`}>
           By submitting your detailed information, you are agreeing to be
           contacted so that we can respond to your inquiries.
         </label>
@@ -661,14 +697,28 @@ const NewPageForm = ({ zapierUrl, successPath, isPreAccount = false }) => {
       <button
         type="submit"
         disabled={loading || !isOtpVerified}
-        className={`w-full  ${
-          isMobile ? "text-[#fff]" : "text-white"
-        } py-3 rounded-full font-medium cursor-pointer text-sm disabled:opacity-50`}
-        style={{
+        className={`w-full ${
+          isForexVariant 
+            ? "h-[44px] mt-6 text-white rounded-full font-medium cursor-pointer text-sm disabled:opacity-50 relative overflow-hidden"
+            : `${
+                isMobile ? "text-[#fff]" : "text-white"
+              } py-3 rounded-full font-medium cursor-pointer text-sm disabled:opacity-50`
+        }`}
+        style={isForexVariant ? {
+          background: "linear-gradient(to bottom, #7C5EFF, #5B3FE0)",
+          boxShadow: "0 8px 25px rgba(124, 94, 255, 0.4)",
+        } : {
           background: isMobile ? "#3A72F5" : "#B68756",
         }}
       >
-        {loading ? "Submitting.." : "Contact an expert immediately"}
+        {isForexVariant ? (
+          <>
+            <span className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+            <span className="relative z-10">{loading ? "Submitting.." : "Contact an expert immediately"}</span>
+          </>
+        ) : (
+          loading ? "Submitting.." : "Contact an expert immediately"
+        )}
       </button>
     </form>
   );
