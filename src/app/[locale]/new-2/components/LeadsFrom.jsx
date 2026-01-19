@@ -1,0 +1,735 @@
+"use client";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
+import "react-phone-number-input/style.css";
+import OtpInput from "react-otp-input";
+import { countryList } from "../../../context/useCountriesDetails";
+import { useLocationDetail } from "../../../context/useLocationDetail";
+import { toast } from "react-toastify";
+import Select from "react-select";
+import { useTranslations, useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { dialCodeByAlpha2 } from "../../../context/useDialCodes";
+
+// Blocked fake/temporary email domains
+const BLOCKED_EMAIL_DOMAINS = [
+  "yopmail.com",
+  "yopmail.fr",
+  "yopmail.net",
+  "mailinator.com",
+  "guerrillamail.com",
+  "guerrillamailblock.com",
+  "10minutemail.com",
+  "tempmail.com",
+  "throwaway.email",
+  "temp-mail.org",
+  "mohmal.com",
+  "trashmail.com",
+  "maildrop.cc",
+  "tempail.com",
+  "getnada.com",
+  "mintemail.com",
+  "mytrashmail.com",
+  "sharklasers.com",
+  "spamgourmet.com",
+  "mailnesia.com",
+  "meltmail.com",
+  "mailcatch.com",
+  "emailondeck.com",
+  "fakeinbox.com",
+  "dispostable.com",
+  "emailfake.com",
+  "getairmail.com",
+  "mailin8r.com",
+  "mailme.lv",
+  "tempr.email",
+  "tmpmail.org",
+  "mail.tm",
+  "emailnator.com",
+];
+
+// put above your return()
+const selectStyles = {
+  control: (base, state) => ({
+    ...base,
+    backgroundColor: "#fff",
+    color: "#000",
+    borderColor: state.isFocused ? "#666684" : "#d1d5db",
+    boxShadow: "none",
+    ":hover": { borderColor: "#666684" },
+    minHeight: 42,
+  }),
+  valueContainer: (base) => ({ ...base, color: "#000" }),
+  singleValue: (base) => ({ ...base, color: "#000" }),
+  input: (base) => ({ ...base, color: "#000" }),
+  placeholder: (base) => ({ ...base, color: "#6b7280" }),
+  menu: (base) => ({
+    ...base,
+    backgroundColor: "#fff",
+    color: "#000",
+    zIndex: 9999,
+  }),
+  menuList: (base) => ({ ...base, backgroundColor: "#fff" }),
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isSelected
+      ? "#e5e7eb"
+      : state.isFocused
+      ? "#f3f4f6"
+      : "#fff",
+    color: "#000",
+    ":active": { backgroundColor: "#e5e7eb" },
+  }),
+  indicatorSeparator: (base) => ({ ...base, backgroundColor: "#e5e7eb" }),
+  dropdownIndicator: (base, state) => ({
+    ...base,
+    color: state.isFocused ? "#666684" : "#9ca3af",
+    ":hover": { color: "#666684" },
+  }),
+};
+
+const LeadsFrom = ({ zapierUrl, successPath, isPreAccount = false, variant = "default" }) => {
+  const { countryData } = useLocationDetail();
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [phoneOtpLoading, setPhoneOtpLoading] = useState(false);
+  const params = useSearchParams();
+  const token = params.get("token");
+  const [showOtp, setShowOtp] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isDisable, setIsDisable] = useState(true);
+  const [otpPhoneNumber, setOtpPhoneNumber] = useState("");
+  const [verifyingOtp, setVerifyingOtp] = useState(false);
+  const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const campaign = params.get("utm_source");
+  const fbclid = params.get("fbclid");
+  const qrCodeId = params.get("id");
+  const path = usePathname();
+
+  const router = useRouter();
+  const t = useTranslations("home.form");
+  const locale = useLocale();
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // prepare country options
+  const options = countryList?.map((item) => ({
+    value: item.alpha_2_code,
+    label: (
+      <div className="flex items-center gap-2">
+        <img
+          src={`https://flagcdn.com/w40/${item.alpha_2_code.toLowerCase()}.png`}
+          alt={item.en_short_name}
+          className="w-5 h-4 object-cover"
+        />
+        <span>{item.en_short_name}</span>
+      </div>
+    ),
+  }));
+
+  // send OTP
+  const sendVerificationCode = async () => {
+    if (!formik.values.email) {
+      toast.error(t("errors.emailRequired"));
+      return;
+    }
+       // Validate email first
+       const validationResponse = await axios.post(`/api/validate-email`, {
+        email: formik.values.email,
+      });
+
+      if (!validationResponse.data.valid) {
+        toast.error(
+          t("errors.invalidEmail") ||
+            "Invalid email address. Please use a valid email."
+        );
+        return;
+      }
+    setOtpLoading(true);
+    axios
+      .post(`/api/otp-smtp`, {
+        email: formik.values.email,
+        first_name: formik.values.nickname,
+        type: "0",
+        locale,
+      })
+      .then((res) => {
+        if (res?.data?.message) {
+          setShowOtp(true);
+          formik.setFieldValue("otp", "");
+          setIsDisable(true);
+          toast.success(t("otpSent"));
+        } else {
+          toast.error(res?.data?.message);
+        }
+      })
+      .finally(() => setOtpLoading(false));
+  };
+
+  const getIso2ByCountryName = (name) => {
+    const hit = countryList.find((c) => c.en_short_name === name);
+    return hit?.alpha_2_code;
+  };
+
+  // formik setup
+  const formik = useFormik({
+    initialValues: {
+      nickname: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      country: "",
+      otp: "",
+      invitation: token,
+      terms: false,
+      account_no: "",
+    },
+    validationSchema: Yup.object({
+      nickname: Yup.string().required(t("errors.firstNameRequired")),
+      last_name: Yup.string().required(t("errors.lastNameRequired")),
+      email: Yup.string()
+        .email(t("errors.emailInvalid"))
+        .required(t("errors.emailRequired"))
+        .test(
+          "no-plus-sign",
+          "Email address cannot contain '+'",
+          (value) => !value || !value.includes("+")
+        )
+        .test(
+          "blocked-domain",
+          "This email domain is not allowed. Please use a valid email address.",
+          (value) => {
+            if (!value) return true;
+            const emailDomain = value.split("@")[1]?.toLowerCase();
+            return !BLOCKED_EMAIL_DOMAINS.includes(emailDomain);
+          }
+        ),
+      phone: Yup.string()
+        .required(t("errors.phoneRequired"))
+        .test("is-valid-e164", t("errors.phoneInvalid"), (value) => {
+          if (!value) return false;
+          return isValidPhoneNumber(value);
+        })
+        .test(
+          "matches-selected-country",
+          "Number doesn’t match selected country",
+          function (value) {
+            const selectedCountryName = this.parent.country;
+            if (!value || !selectedCountryName) return true;
+            const selectedIso2 = getIso2ByCountryName(selectedCountryName);
+            if (!selectedIso2) return true;
+            const pn = parsePhoneNumberFromString(value);
+            if (!pn) return false;
+            return pn.country === selectedIso2;
+          }
+        ),
+      country: Yup.string().required(t("errors.countryRequired")),
+      otp: Yup.string()
+        .length(6, t("errors.otpLength"))
+        .required(t("errors.otpRequired")),
+      account_no: isPreAccount
+        ? Yup.string().required("Account number is required")
+        : Yup.string(),
+      terms: Yup.bool().oneOf([true], t("errors.termsRequired")),
+    }),
+    onSubmit: async (values) => {
+      setLoading(true);
+      // Check if OTP is verified before proceeding (state is set after server-side verification)
+      if (!isOtpVerified) {
+        toast.error(
+          "Please verify your phone number with OTP before submitting."
+        );
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Validate email first
+        const validationResponse = await axios.post(`/api/validate-email`, {
+          email: formik.values.email,
+        });
+
+        if (!validationResponse.data.valid) {
+          toast.error(
+            t("invalidEmail") ||
+              "Invalid email address. Please use a valid email."
+          );
+          return;
+        }
+        const companionsSummary =
+          values.isAnyone === "yes" && values.companions?.length
+            ? values.companions
+                .slice(0, Number(values.companionsCount) || 0)
+                .map((p, i) =>
+                  `${i + 1}) ${p.first || ""} ${p.last || ""}`.trim()
+                )
+                .join(" | ")
+            : "";
+        // Now save to sheet only after all APIs succeeded
+        const row = [
+          values.nickname, // firstName
+          values.last_name, // lastName
+          values.email, // email
+          values.phone, // phone
+          values.country, // country
+          companionsSummary, // companions (6th column)
+          path,
+          campaign,
+          new Date().toISOString(),
+        ];
+
+        const resSheet = await fetch("/api/sheets", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ withObject: true, values: [row] }),
+        });
+
+        const json = await resSheet.json();
+        if (!json.ok) {
+          toast.error(json.error || "Failed to save to sheet.");
+          setLoading(false);
+          return;
+        }
+
+        try {
+          await axios.post(
+            "/api/lucky-draw-email",
+            JSON.stringify({
+              nickname: values?.nickname,
+              email: values?.email,
+              locale,
+            })
+          );
+        } catch (emailError) {
+          console.error("Lucky draw email failed:", emailError);
+          // Continue even if email fails, but log it
+        }
+
+        toast.success(t("thankYou1"));
+        localStorage.setItem("user", JSON.stringify({ ...values }));
+        router.push(successPath);
+        formik.resetForm();
+        setIsOtpVerified(false); // Reset OTP verification after successful submission
+      } catch (err) {
+        console.error("Form submission error:", err);
+        toast.error(
+          err?.response?.data?.message || err?.message || "Something went wrong"
+        );
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
+
+  // Set country and invitation after formik is initialized
+  useEffect(() => {
+    if (countryData?.country) {
+      const filterData = countryList.find(
+        (item) =>
+          item?.en_short_name == countryData.country ||
+          item?.alpha_2_code == countryData.country
+      );
+      formik.setFieldValue(
+        "country",
+        filterData ? filterData?.alpha_2_code : ""
+      );
+    }
+    formik.setFieldValue("invitation", token || "8owwwwwwzcowwwww");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryData?.country, countryList, params, token]);
+
+  // Reset OTP verification when phone number changes
+  useEffect(() => {
+    if (
+      otpPhoneNumber &&
+      formik.values.phone &&
+      formik.values.phone !== otpPhoneNumber
+    ) {
+      // Phone number changed after OTP was sent, reset OTP state
+      setShowOtp(false);
+      setIsDisable(true);
+      setIsOtpVerified(false); // Reset OTP verified status
+      formik.setFieldValue("otp", "");
+      setOtpPhoneNumber("");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik.values.phone, otpPhoneNumber]);
+
+  // Check if phone number is valid and complete
+  const isPhoneValid =
+    formik.values.phone && isValidPhoneNumber(formik.values.phone);
+
+  // verify OTP server-side
+  const verifyOtpCode = async (otp) => {
+    if (!otp || otp.length !== 6) {
+      return;
+    }
+
+    setVerifyingOtp(true);
+    try {
+      const res = await axios.post("/api/verify-otp", {
+        email: formik.values.email,
+        otp: otp,
+      });
+
+      if (res?.data?.success) {
+        toast.success(t("otpSuccess") || "OTP verified successfully");
+        setShowOtp(false);
+        setIsDisable(false);
+        setIsOtpVerified(true); // Mark OTP as verified
+      } else {
+        toast.error(res?.data?.message || t("otpFail") || "Invalid OTP");
+        setIsOtpVerified(false); // Ensure it's false on failure
+      }
+    } catch (error) {
+      console.error("OTP verification error:", error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          t("otpFail") ||
+          "Failed to verify OTP"
+      );
+      setIsOtpVerified(false); // Ensure it's false on error
+    } finally {
+      setVerifyingOtp(false);
+    }
+  };
+
+  const color = isMobile ? "text-[#fff]" : "text-[#fff]";
+  const isForexVariant = variant === "forex";
+
+  return (
+    <form onSubmit={formik.handleSubmit} className={isForexVariant ? "space-y-4" : "space-y-4"}>
+      {/* First + Last Name */}
+      <input
+        name="fbclid"
+        className="hidden"
+        type="text"
+        onChange={formik.handleChange}
+        value={
+          !formik.values.fbclid || formik.values.fbclid === ""
+            ? (formik.values.fbclid = fbclid)
+            : (formik.values.fbclid = fbclid)
+        }
+      />
+      <input
+        name="utm_campain"
+        className="hidden"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={
+          !formik.values.utm_campain || formik.values.utm_campain === ""
+            ? (formik.values.utm_campain = path)
+            : (formik.values.utm_campain = path)
+        }
+      />
+      <input
+        name="utm_source"
+        className="hidden"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={
+          !formik.values.utm_source || formik.values.utm_source === ""
+            ? (formik.values.utm_source = campaign)
+            : (formik.values.utm_source = campaign)
+        }
+      />
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("firstName")}</label>
+          <input
+            type="text"
+            placeholder={t("firstName")}
+            {...formik.getFieldProps("nickname")}
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } rounded-md ${
+                    formik.touched.nickname && formik.errors.nickname
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
+            }`}
+          />
+          {formik.touched.nickname && formik.errors.nickname && (
+            <p className="text-xs text-red-500">{formik.errors.nickname}</p>
+          )}
+        </div>
+        <div>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("lastName")}</label>
+          <input
+            type="text"
+            placeholder={t("lastName")}
+            {...formik.getFieldProps("last_name")}
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.last_name && formik.errors.last_name
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
+            }`}
+          />
+          {formik.touched.last_name && formik.errors.last_name && (
+            <p className="text-xs text-red-500">{formik.errors.last_name}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Email + OTP */}
+      <div>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("email")}</label>
+        <div className="relative">
+          <input
+            type="email"
+            placeholder={t("email")}
+            {...formik.getFieldProps("email")}
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md bg-white text-primary ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.email && formik.errors.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
+            }`}
+          />
+          <button
+            type="button"
+            onClick={sendVerificationCode}
+            className={`absolute min-h-[41px] top-0 ${
+              locale == "ar" ? "left-0" : "right-0"
+            } ${
+              isForexVariant 
+                ? "bg-[#7C5EFF] hover:bg-[#6B4FE0] text-white px-3 py-1 rounded-md text-xs" 
+                : "bg-[#666684] text-white px-3 py-1 rounded-md text-xs"
+            }`}
+          >
+            {otpLoading ? t("sending") : t("getCode")}
+          </button>
+        </div>
+        {formik.touched.email && formik.errors.email && (
+          <p className="text-xs text-red-500">{formik.errors.email}</p>
+        )}
+      </div>
+
+      {showOtp && (
+        <div>
+          <p className={`text-sm mb-2 ${isForexVariant ? "text-white/70" : "text-[#000]"}`}>
+            OTP has been sent to given Email
+          </p>
+          <div className=" flex gap-3 items-center">
+            <OtpInput
+              value={formik.values.otp}
+              onChange={(otp) => {
+                formik.setFieldValue("otp", otp);
+                if (otp?.length == 6) {
+                  verifyOtpCode(otp);
+                }
+              }}
+              numInputs={6}
+              containerStyle={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "3px",
+              }}
+              isInputNum
+              renderInput={(props) => (
+                <input
+                  {...props}
+                  type="tel" // Triggers number pad
+                  inputMode="numeric" // Helps mobile keyboard detect numeric input
+                  pattern="[0-9]*" // Optional: enforce numeric
+                />
+              )}
+              inputStyle={{
+                fontSize: "16px", // ✅ critical to stop iOS zoom
+                borderRadius: "5px",
+                paddingBottom: "10px",
+                paddingTop: "10px",
+                width: "15%",
+                backgroundColor: "#fff",
+                color: "#666684",
+                fontWeight: "700",
+                outlineColor: "#666684",
+                border:
+                  formik.touched.otp && formik.errors.otp
+                    ? "1px solid red"
+                    : "1px solid #666684",
+              }}
+            />
+            {/* <button
+                            type="button"
+                            onClick={verifyOtpCode}
+                            className=" bg-[#666684] text-white px-3 py-1 rounded-md text-sm"
+                        >
+                            {t("verifyCode")}
+                        </button> */}
+          </div>
+        </div>
+      )}
+      {/* Phone */}
+      <div>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>Enter WhatsApp Number</label>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <PhoneInput
+            international
+            defaultCountry={
+              countryData?.country_code || countryData?.country || "AE"
+            }
+            value={formik.values.phone}
+            onChange={(phone) => formik.setFieldValue("phone", phone)}
+            className={`flex-1 ${
+              isForexVariant 
+                ? "[&_input]:h-[42px] [&_input]:border-none [&_input]:rounded-md [&_input]:bg-white [&_input]:px-4 [&_input]:text-sm [&_input]:text-[#111] [&_input]:focus:ring-2 [&_input]:focus:ring-[#7C5EFF]/50" 
+                : `border px-3 bg-white text-primary py-2 ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } rounded-md ${
+                    formik.touched.phone && formik.errors.phone
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
+            }`}
+          />
+        </div>
+        {formik.touched.phone && formik.errors.phone && (
+          <p className="text-xs text-red-500">{formik.errors.phone}</p>
+        )}
+      </div>
+
+      {isPreAccount && (
+        <div>
+          <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>Account Number</label>
+          <input
+            type="text"
+            placeholder={"Account Number"}
+            {...formik.getFieldProps("account_no")}
+            className={`w-full ${
+              isForexVariant 
+                ? "h-[42px] border-none rounded-md bg-white px-4 text-sm text-[#111] focus:ring-2 focus:ring-[#7C5EFF]/50" 
+                : `border px-3 py-2 rounded-md text-white ${
+                    isMobile ? "bg-[#33335b]" : ""
+                  } ${
+                    formik.touched.account_no && formik.errors.account_no
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`
+            }`}
+          />
+          {formik.touched.account_no && formik.errors.account_no && (
+            <p className="text-xs text-red-500">{formik.errors.account_no}</p>
+          )}
+        </div>
+      )}
+
+      {/* Country */}
+      <div>
+        <label className={`text-sm ${isForexVariant ? "text-white/90" : color} mb-1`}>{t("country")}</label>
+        <Select
+          name="country"
+          options={options}
+          styles={isForexVariant ? {
+            ...selectStyles,
+            control: (base, state) => ({
+              ...base,
+              backgroundColor: "#fff",
+              color: "#000",
+              borderColor: state.isFocused ? "rgba(124, 94, 255, 0.5)" : "transparent",
+              borderWidth: state.isFocused ? "2px" : "0px",
+              boxShadow: state.isFocused ? "0 0 0 2px rgba(124, 94, 255, 0.5)" : "none",
+              minHeight: 42,
+            }),
+          } : selectStyles}
+          onChange={(opt, e) => {
+            console.log({ opt, e });
+            formik.setFieldValue("country", opt?.value);
+          }}
+          onBlur={() => formik.setFieldTouched("country", true)}
+          value={options.find((opt) => opt.value === formik.values.country)}
+        />
+        {formik.touched.country && formik.errors.country && (
+          <p className="text-xs text-red-500">{formik.errors.country}</p>
+        )}
+      </div>
+
+      {/* Terms */}
+      <div className="flex items gap-2">
+        <input
+          type="checkbox"
+          id="terms"
+          {...formik.getFieldProps("terms")}
+          className="h-5 w-5"
+        />
+        <label htmlFor="terms" className={`text-xs ${isForexVariant ? "text-white/50" : "text-white"}`}>
+          By submitting your detailed information, you are agreeing to be
+          contacted so that we can respond to your inquiries.
+        </label>
+      </div>
+      {formik.touched.terms && formik.errors.terms && (
+        <p className="text-xs text-red-500">{formik.errors.terms}</p>
+      )}
+
+      {/* Submit */}
+     <button
+  type="submit"
+  disabled={loading || !isOtpVerified}
+  className={`w-full ${
+    isForexVariant
+      ? "mt-6 h-[54px] rounded-full text-white text-[18px] font-medium tracking-wide disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+      : `${isMobile ? "text-[#fff]" : "text-white"} py-3 rounded-full font-medium cursor-pointer text-sm disabled:opacity-50`
+  }`}
+  style={
+    isForexVariant
+      ? {
+          background: "linear-gradient(180deg, #6E55D6 0%, #3D2A8E 100%)",
+          border: "2px solid rgba(68, 214, 255, 0.85)", // cyan border like screenshot
+          boxShadow:
+            "0 10px 28px rgba(124, 94, 255, 0.45), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.12)",
+        }
+      : {
+           background: "linear-gradient(180deg, #6E55D6 0%, #3D2A8E 100%)",
+          border: "2px solid rgba(68, 214, 255, 0.85)", // cyan border like screenshot
+          boxShadow:
+            "0 10px 28px rgba(124, 94, 255, 0.45), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.12)",
+        }
+  }
+> 
+        {isForexVariant ? (
+          <>
+            <span className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+            <span className="relative z-10">{loading ? "Submitting.." : "Contact an expert immediately"}</span>
+          </>
+        ) : (
+          loading ? "Submitting.." : "Contact an expert immediately"
+        )}
+      </button>
+    </form>
+  );
+};
+
+
+export default LeadsFrom
