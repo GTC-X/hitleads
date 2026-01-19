@@ -134,26 +134,30 @@ const itemsBottom = [
   },
 ];
 
-function Card({ icon, title, desc }) {
+function Card({ icon, title, desc, showCenterLine = true }) {
   return (
-    <div className="flex h-full flex-col items-center justify-center px-6 text-center">
+    <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
+      {showCenterLine && (
+        <span className="absolute left-2/2 top-1/2 h-10 w-[2px] -translate-x-1/2 -translate-y-1/2 bg-white/70" />
+      )}
+
       <div
-        className="mb-4 flex h-[84px] w-[84px] items-center justify-center rounded-xl bg-[#0D0820]"
+        className="relative z-10 mb-4 flex h-[84px] w-[84px] items-center justify-center rounded-xl bg-[#0D0820]"
         style={{
           borderRadius: "20px",
-          border: "1px solid #000",
+          border: "1px solid rgba(255,255,255,0.12)",
           background: "#040112",
-          boxShadow: "-9px -16px 30px 0 rgba(80, 68, 104, 0.39)",
+          boxShadow: "-9px -16px 30px 0 rgba(80, 68, 104, 0.60)",
         }}
       >
         {icon}
       </div>
 
-      <h3 className="whitespace-pre-line text-[18px] font-normal leading-[1.25] text-white">
+      <h3 className="relative z-10 whitespace-pre-line text-[18px] font-normal leading-[1.25] text-white">
         {title}
       </h3>
 
-      <p className="mt-6 whitespace-pre-line text-[16px] font-[300] leading-[1.55] text-[#B3AECE]">
+      <p className="relative z-10 mt-6 whitespace-pre-line text-[16px] font-[300] leading-[1.55] text-[#B3AECE]">
         {desc}
       </p>
     </div>
@@ -163,51 +167,40 @@ function Card({ icon, title, desc }) {
 export default function ForexSkillsSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#030013] py-24">
-      {/* background glow */}
- 
       <div className="relative mx-auto container">
-        {/* Heading */}
         <h2 className="mx-auto max-w-5xl text-center text-[28px] md:text-[42px] font-medium leading-[1.35] text-white">
           Understand market trends, master the core
           <br />
           skills of forex trading
         </h2>
 
-        {/* Grid */}
         <div className="mt-12 overflow-hidden rounded-[10px]">
-          {/* Top row (3) */}
-          <div className="grid grid-cols-1  md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3">
             {itemsTop.map((it, idx) => (
               <div
                 key={idx}
                 className={[
-                  " border-b border-white/10 py-10 ",
-                  "",
+                  "border-b border-white/10 py-10",
                   idx !== 2 ? "md:border-r md:border-white/10" : "",
                 ].join(" ")}
               >
-                <Card {...it} />
+                <Card {...it} showCenterLine={idx !== 2} />
               </div>
             ))}
           </div>
 
-          {/* Bottom row (2) */}
           <div className="grid grid-cols-1 md:grid-cols-2">
             {itemsBottom.map((it, idx) => (
               <div
                 key={idx}
-                className={[
-                  "py-10",
-                  idx === 0 ? "md:border-r md:border-white/10" : "",
-                ].join(" ")}
+                className={["py-10", idx === 0 ? "md:border-r md:border-white/10" : ""].join(" ")}
               >
-                <Card {...it} />
+                <Card {...it} showCenterLine={idx !== 1} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-14 flex justify-center">
           <button
             type="button"
