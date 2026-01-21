@@ -521,7 +521,7 @@ const LeadsFrom = ({ zapierUrl, successPath, isPreAccount = false, variant = "de
           <button
             type="button"
             onClick={sendVerificationCode}
-            className={`absolute min-h-[41px] top-0 ${
+            className={`absolute min-h-[42px] top-0 ${
               locale == "ar" ? "left-0" : "right-0"
             } ${
               isForexVariant 

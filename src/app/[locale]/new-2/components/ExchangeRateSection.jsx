@@ -7,57 +7,45 @@ export default function ForexRealtimeHero() {
 
       {/* Subtle grain (pure CSS) */}
 
-      <div className="= mx-auto container">
+      <div className="mx-auto max-w-6xl">
         {/* Background Image */}
 
 
         {/* Inner panel like screenshot */}
-        <div className="mx-auto relative w-full rounded-[24px] bg-[rgba(10,6,22,0.55)] px-6 py-10 ">
+        <div className="mx-auto relative w-full rounded-[24px] bg-gradient-to-r from-[#2C2838] to-[#030013] px-6 py-5 ">
           {/* top-left soft highlight */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-30 rounded-[24px] bg-no-repeat"
-            style={{
-              backgroundImage: `url('/new/bg-last-2.svg')`,
-            }}
-          ></div>
+       
           {/* <div className="pointer-events-none absolute -left-24 -top-15 h-[260px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_65%)] blur-2xl" /> */}
 
-          <div className=" max-w-6xl mx-auto text-center md:py-10">
-            <h2 className="md:text-[42px] text-[28px] font-normal leading-[1.2] text-white">
-              Foreign exchange trading operates 24 hours a day in real time,
-              allowing you to seize the latest trends in
-               <span className="text-[#7C5EFF]"
-                style={{
-                  background: "linear-gradient(180deg, #C55CFF 0%, #381158 100%)",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              > the global market at any
-              time.</span> 
+          <div className=" max-w-5xl mx-auto text-center md:py-10">
+            <h2 className="text-[22px] md:text-[30px] xl:text-[35px] font-semibold leading-[1.35] text-white text-center">
+              Forex market operates 24 hours a day, giving you the flexibility to act on market movements and global trends whenever they happen.
             </h2>
 
-            <p className="mx-auto mt-8 max-w-[760px] text-[16px] leading-[1.2] text-white">
-              Free foreign exchange market analysis report, helping you predict
-              market trends
+            <p className="mx-auto mt-8 max-w-[760px] text-[16px] leading-[1.6] text-white">
+              Get access to free foreign exchange market insights and analysis reports designed to help you forecast market trends accurately.
             </p>
 
-            <button
-              type="button"
-              className="relative mt-12  max-w-2xl text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
-              style={{
-                borderRadius: "15px",
-                border: "1px solid #BE9EFF",
-                background:
-                  "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
-              }}
-            >
-              <span className="relative block">
-                By learning foreign exchange trading strategies, you will be
-                able to identify market trends and make efficient trading
-                decisions.
-              </span>
-            </button>
+           <button
+            type="button"
+            onClick={() => {
+              document
+                .getElementById("hero-section")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            className="cursor-pointer relative mt-12 max-w-2xl text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
+            style={{
+              borderRadius: "15px",
+              border: "1px solid #BE9EFF",
+              background:
+                "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
+            }}
+          >
+            <span className="relative block">
+              Start learning foreign exchange trading strategies today to recognize opportunities, make informed decisions, and trade with confidence.
+            </span>
+          </button>
+
           </div>
         </div>
       </div>

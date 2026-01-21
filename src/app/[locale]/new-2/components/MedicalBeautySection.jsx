@@ -213,42 +213,50 @@ export default function FxDecisionSection() {
     <section className="relative w-full overflow-hidden bg-[#030013]">
       <div className="relative mx-auto container py-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* LEFT TEXT */}
-          <div>
-            <h2 className="text-center md:text-left md:text-[42px] text-[28px] font-[400] leading-[1.12] tracking-[0.2px] text-white">
-              In the tide of foreign exchange trading, every precise decision is
-              an opportunity to seize the global capital flow trends.
-            </h2>
+  
+  {/* LEFT TEXT */}
+  <div className="max-w-xl text-center md:text-left order-2 lg:order-1">
+    <h2 className="text-[20px] md:text-[30px] xl:text-[35px] font-semibold leading-[1.35] text-white">
+      Forex trading rewards those who understand the market and know how to turn global price movements into income.
+    </h2>
 
-            <p className="mt-10 text-center md:text-left text-[16px] leading-[1.7] text-[#C0BBD9]">
-              Foreign exchange technical analysis is not a choice, but rather
-              the core
-              <br />
-              competence of every successful trader.
-            </p>
+    <p className="mt-10 text-center md:text-left text-[16px] leading-[1.7] text-[#C0BBD9]">
+      Successful traders don’t guess. They understand the market, control risk, and trade with clear strategies. If you want to earn from forex trading, learning how the market works is the first step.
+    </p>
 
-            <button
-              type="button"
-              className="relative mt-14 min-w-[360px] max-w-full w-full sm:w-auto text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
-              style={{
-                borderRadius: "15px",
-                border: "1px solid #BE9EFF",
-                background:
-                  "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
-              }}
-            >
-              <span className="relative block">
-                One-on-one foreign exchange <br /> trading strategy consultation
+   <button
+  type="button"
+  onClick={() => {
+    document
+      .getElementById("hero-section")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }}
+  className="cursor-pointer relative mt-14 min-w-[360px] max-w-full w-full sm:w-auto text-center text-[15px] md:text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
+  style={{
+    borderRadius: "15px",
+    border: "1px solid #BE9EFF",
+    background:
+      "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
+  }}
+>
+  <span className="relative block">
+    Want to Earn from Forex? Speak With Us
+  </span>
+</button>
 
-              </span>
-            </button>
-          </div>
+  </div>
 
-          {/* RIGHT VISUAL */}
-          <div className="relative mx-auto w-full max-w-[540px] flex md:justify-end justify-center">
-            <Image src="/new/icons-section.png" alt="medical-beauty-section" width={450} height={450} />
-          </div>
-        </div>
+  {/* RIGHT VISUAL */}
+  <div className="relative mx-auto w-full max-w-[540px] flex md:justify-end justify-center order-1 lg:order-2">
+    <Image
+      src="/new/icons-section.png"
+      alt="medical-beauty-section"
+      width={450}
+      height={450}
+    />
+  </div>
+</div>
+
       </div>
     </section>
   );

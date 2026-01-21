@@ -4,21 +4,19 @@ import LeadsFrom from "./LeadsFrom";
 
 export default function ForexHeroWithForm() {
   return (
-    <section
+    <section id="hero-section"
       className="relative w-full overflow-hidden bg-cover bg-top-left"
       style={{ backgroundImage: "url(/new-2/banner3.webp)" }}
     >
-      <div className="relative mx-auto container flex flex-col lg:flex-row items-center lg:items-cetner justify-between gap-10 px-6 py-20">
+      <div className="relative mx-auto container flex flex-col lg:flex-row items-center lg:items-cetner justify-between gap-10 py-10 px-6 xl:py-28">
         {/* LEFT TEXT */}
         <div className="max-w-2xl text-center lg:text-left">
-          <h1 className="text-[28px] md:text-[40px] font-medium leading-[1.2] text-white/95">
-            In the world of forex trading, every trade is a new opportunity
-            waiting to be seized
+          <h1 className="text-[25px] md:text-[40px] xl:text-[45px] font-bold leading-[1.2] text-white/95">
+            Ever Wonder How Traders Make Money Every Day?
           </h1>
 
-          <p className="mt-8 text-[18px] md:text-[28px] font-[400] leading-[1.3] text-[#ADAABE]">
-            Understand market trends, master the core <br />
-            skills of forex trading
+          <p className="mt-8 text-[16px] md:text-[22px] font-[400] leading-[1.5] text-[#ADAABE]">
+           Real Skills. Clear Structure. No Confusing Theory.<br className="hidden md:block"></br>Learn the basics of forex trading and how people profit from it.
           </p>
         </div>
 

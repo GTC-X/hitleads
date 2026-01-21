@@ -2,8 +2,8 @@
 
 const itemsTop = [
   {
-    title: "Market trend prediction and analysis",
-    desc: "Master forex technical analysis to improve\nmarket trend prediction accuracy.",
+    title: "Read the Market Before You Trade",
+    desc: "Learn how traders spot trends early and enter trades with confidence.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,8 +20,8 @@ const itemsTop = [
     ),
   },
   {
-    title: "Foreign Exchange Trading Psychology\nAnd Emotional Control",
-    desc: "Learn how to use forex trading solutions for people\nunaware of trading strategies.",
+    title: "Think Like a Profitable Trader",
+    desc: "Control emotions, avoid bad decisions, and trade with a clear mindset.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -59,8 +59,8 @@ const itemsTop = [
   },
   {
     title:
-      "Learn to use leverage trading to\nincrease your investment return rate",
-    desc: "Deeply study forex market volatility to seize\ntrading opportunities",
+      "Use Leverage to Grow Faster",
+    desc: "Understand how leverage works and how traders use it to earn more.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -85,8 +85,8 @@ const itemsTop = [
 const itemsBottom = [
   {
     title:
-      "Learn to formulate efficient foreign exchange\ntrading plans and implement strategies",
-    desc: "Master the stop-loss and take-profit strategies to\nensure the safety of funds.",
+      "Trade With a Clear Plan",
+    desc: "No random trades. Learn when to enter, exit, and wait.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -115,8 +115,8 @@ const itemsBottom = [
     ),
   },
   {
-    title: "Foreign exchange strategy development\nand risk control",
-    desc: "Effective risk management to secure every trade",
+    title: "Protect Capital, Grow Profits",
+    desc: "Smart risk control helps traders stay in the market and earn long term.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,9 +136,9 @@ const itemsBottom = [
 
 function Card({ icon, title, desc, showCenterLine = true }) {
   return (
-    <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
+    <div className="relative flex h-full flex-col items-center justify-center px-5 md:px-12 text-center">
       {showCenterLine && (
-        <span className="absolute left-2/2 top-1/2 h-10 w-[2px] -translate-x-1/2 -translate-y-1/2 bg-white/70" />
+        <span className="hidden md:block absolute left-2/2 bottom-1/2 md:top-1/2 h-10 w-[2px] -translate-x-1/2 -translate-y-1/2 bg-white/70" />
       )}
 
       <div
@@ -166,12 +166,11 @@ function Card({ icon, title, desc, showCenterLine = true }) {
 
 export default function ForexSkillsSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#030013] py-24">
+    <section className="relative w-full overflow-hidden bg-[#030013] py-10 md:py-0">
       <div className="relative mx-auto container">
-        <h2 className="mx-auto max-w-5xl text-center text-[28px] md:text-[42px] font-medium leading-[1.35] text-white">
-          Understand market trends, master the core
-          <br />
-          skills of forex trading
+        <h2 className="mx-auto max-w-5xl text-center text-[22px] md:text-[30px] xl:text-[35px] font-semibold leading-[1.35] text-white">
+          Trading is not luck.<br></br>
+We teach you how to think like a trader.
         </h2>
 
         <div className="mt-12 overflow-hidden rounded-[10px]">
@@ -202,22 +201,26 @@ export default function ForexSkillsSection() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <button
-            type="button"
-            className="relative w-[420px] max-w-full text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white"
-            style={{
-              borderRadius: "15px",
-              border: "1px solid #BE9EFF",
-              background:
-                "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
-            }}
-          >
-            <span className="relative block">
-              From beginners to experts in foreign
-              <br />
-              exchange, embark on your trading journey
-            </span>
-          </button>
+       <button
+          type="button"
+          onClick={() => {
+            document
+              .getElementById("hero-section")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          className="relative cursor-pointer w-[420px] max-w-full text-center text-[16px] py-3 px-6 font-medium leading-[1.3] text-white border-opacity-0 hover:border-opacity-100 transition-border duration-300"
+          style={{
+            borderRadius: "15px",
+            border: "1px solid #BE9EFF",
+            background:
+              "radial-gradient(65.86% 65.86% at 50% 50%, #2E155A 54.68%, #543593 100%)",
+          }}
+        >
+          <span className="relative block leading-[1.5]">
+            Start learning Forex trading today and earn skills that can pay you back fast.
+          </span>
+        </button>
+
         </div>
       </div>
     </section>
